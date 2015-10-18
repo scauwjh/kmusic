@@ -1,0 +1,242 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <!-- top: cover_container -->
+        <RelativeLayout
+            android:id="@+id/cover_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cover_container_height"
+            android:background="@color/White" >
+            <ImageView
+                android:id="@+id/cover_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:focusable="false"
+                android:background="@drawable/default_cover"
+                android:contentDescription="@null" />
+        </RelativeLayout>
+
+
+        <!-- middle: middle_container -->
+        <RelativeLayout
+            android:id="@+id/middle_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_tab_line"
+            android:layout_below="@+id/cover_container"
+            android:orientation="vertical"
+            android:background="@color/White"
+            android:gravity="center_horizontal">
+
+            <!-- play status -->
+            <RelativeLayout
+                android:id="@+id/play_status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ctrl_container"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:background="@color/White">
+
+                <!-- Music msg -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_above="@+id/progress_container">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="@dimen/music_text_width"
+                            android:layout_height="@dimen/music_title_text_height"
+                            android:layout_marginTop="@dimen/margin_top"
+                            android:layout_marginLeft="@dimen/margin_left"
+                            android:text="Butter Fly"
+                            android:textColor="@color/default_theme_color"
+                            android:textSize="@dimen/music_title_text_size"/>
+
+                        <TextView
+                            android:layout_width="@dimen/music_text_width"
+                            android:layout_height="@dimen/music_desc_text_height"
+                            android:layout_marginLeft="@dimen/margin_left"
+                            android:text="Butter Fly - 和田光司"
+                            android:textStyle="italic"
+                            android:textColor="@color/default_theme_color"
+                            android:textSize="@dimen/music_desc_text_size"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_top"
+                        android:gravity="center">
+                        <ImageButton
+                            android:id="@+id/btn_favourite"
+                            android:layout_width="@dimen/favourite_btn_side_length"
+                            android:layout_height="@dimen/favourite_btn_side_length"
+                            android:tint="@color/default_theme_color"
+                            android:background="@drawable/heart2"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- progress_container -->
+                <LinearLayout
+                    android:id="@+id/progress_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/progress_container_height"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="@dimen/time_display_width"
+                        android:layout_height="@dimen/time_display_height"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00"
+                            android:textColor="@color/default_theme_color"
+                            android:textSize="@dimen/time_text_size"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/time_display_height"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:tint="@color/default_theme_color"
+                            android:src="@color/Grey"/>
+                        <ImageView
+                            android:id="@+id/progress_line"
+                            android:layout_width="@dimen/progress_line_width"
+                            android:layout_height="@dimen/progress_line_height"
+                            android:tint="@color/default_theme_color"
+                            android:src="@color/Grey"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="@dimen/time_display_width"
+                        android:layout_height="@dimen/time_display_height"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="04:18"
+                            android:textColor="@color/default_theme_color"
+                            android:textSize="@dimen/time_text_size"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- ctrl container -->
+            <LinearLayout
+                android:id="@+id/ctrl_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/controller_height"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                android:background="@color/White">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/btn_previous"
+                        android:layout_width="@dimen/next_btn_side_length"
+                        android:layout_height="@dimen/next_btn_side_length"
+                        android:tint="@color/default_theme_color"
+                        android:background="@drawable/previous"/>
+                    <ImageButton
+                        android:id="@+id/btn_play"
+                        android:layout_marginLeft="@dimen/play_btn_horizontal_margin"
+                        android:layout_width="@dimen/play_btn_side_length"
+                        android:layout_height="@dimen/play_btn_side_length"
+                        android:tint="@color/default_theme_color"
+                        android:background="@drawable/play_pause"/>
+                    <ImageButton
+                        android:id="@+id/btn_next"
+                        android:layout_marginLeft="@dimen/play_btn_horizontal_margin"
+                        android:layout_width="@dimen/next_btn_side_length"
+                        android:layout_height="@dimen/next_btn_side_length"
+                        android:tint="@color/default_theme_color"
+                        android:background="@drawable/next"/>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <!-- bottom: bottom container -->
+        <LinearLayout
+            android:id="@+id/bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_tab_height"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:baselineAligned="true"
+            android:background="@color/White">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/btn_back"
+                    android:layout_width="@dimen/bottom_btn_side_length"
+                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:tint="@color/default_theme_color"
+                    android:src="@drawable/bottom_btn_back"/>
+                <ImageView
+                    android:id="@+id/btn_list"
+                    android:layout_marginLeft="@dimen/bottom_btn_horizontal_margin"
+                    android:layout_width="@dimen/bottom_btn_side_length"
+                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:tint="@color/default_theme_color"
+                    android:src="@drawable/bottom_btn_menu"/>
+                <ImageView
+                    android:id="@+id/btn_add"
+                    android:layout_marginLeft="@dimen/bottom_btn_horizontal_margin"
+                    android:layout_width="@dimen/bottom_btn_side_length"
+                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:tint="@color/default_theme_color"
+                    android:src="@drawable/bottom_btn_add"/>
+                <ImageView
+                    android:id="@+id/btn_order"
+                    android:layout_marginLeft="@dimen/bottom_btn_horizontal_margin"
+                    android:layout_width="@dimen/bottom_btn_side_length"
+                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:tint="@color/default_theme_color"
+                    android:src="@drawable/bottom_btn_default_order"/>
+                <ImageView
+                    android:id="@+id/btn_menu"
+                    android:layout_marginLeft="@dimen/bottom_btn_horizontal_margin"
+                    android:layout_width="@dimen/bottom_btn_side_length"
+                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:tint="@color/default_theme_color"
+                    android:src="@drawable/bottom_btn_menu2"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- bottom tab line -->
+        <View
+            android:id="@+id/bottom_tab_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_tab_line_height"
+            android:layout_above="@id/bottom_container"
+            android:background="@color/bottom_tab_line_color"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

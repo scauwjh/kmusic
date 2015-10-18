@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="Red">#F44336</color>
+    <color name="Pink">#E91E63</color>
+    <color name="Purple">#9C27B0</color>
+    <color name="DeepPurple">#673AB7</color>
+    <color name="Indigo">#3F51B5</color>
+    <color name="Blue">#2196F3</color>
+    <color name="LightBlue">#03A9F4</color>
+    <color name="Cyan">#00BCD4</color>
+    <color name="Teal">#009688</color>
+    <color name="Green">#4CAF50</color>
+    <color name="LightGreen">#8BC34A</color>
+    <color name="Lime">#CDDC39</color>
+    <color name="Yellow">#FFEB3B</color>
+    <color name="Amber">#FFC107</color>
+    <color name="Orange">#FF9800</color>
+    <color name="DeepOrange">#FF5722</color>
+    <color name="Brown">#795548</color>
+    <color name="Grey">#9E9E9E</color>
+    <color name="BlueGrey">#607D8B</color>
+    <color name="Black">#000000</color>
+    <color name="White">#ffffff</color>
+    <color name="bottom_tab_line_color">#efefef</color>
+    <color name="music_title_color">#515151</color>
+    <color name="time_color">#515151</color>
+    <color name="default_theme_color">#515151</color>
+
+    <color name="screen_background_black">#ff000000</color>
+    <color name="translucent_background">#e0000000</color>
+    <color name="transparent_background">#00000000</color>
+
+    <color name="solid_red">#f00</color>
+    <color name="solid_blue">#0000ff</color>
+    <color name="solid_green">#f0f0</color>
+    <color name="solid_yellow">#ffffff00</color>
+
+</resources>

@@ -1,0 +1,752 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Wech",
+				"WechatSDKImpl"
+			],
+			[
+				"JSON",
+				"JSONObject"
+			],
+			[
+				"serv",
+				"serviceUser"
+			],
+			[
+				"USER",
+				"USER_TEAM_COMMON_USER"
+			],
+			[
+				"val",
+				"valueOf(String)	Long"
+			],
+			[
+				"va",
+				"valueOf(String)	Long"
+			],
+			[
+				"index",
+				"indexOf(String)	int"
+			],
+			[
+				"im",
+				"import"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pci",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"packageins",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"insa",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"ecli",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 441.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/Codes/Android/MusicPlayer/gradlew",
+		"/E/Codes/Android/MusicPlayer_old/gradlew",
+		"/E/Codes/Android/MusicPlayer_old/build.gradle",
+		"/E/Codes/Android/creat_projecte.bat",
+		"/E/Codes/Android/MusicPlayer/build.xml",
+		"/D/Program Files/Sublime Text 2/Data/Packages/Default/Preferences.sublime-settings",
+		"/E/Codes/Android/MusicPlayer_old/gradle.properties",
+		"/E/Codes/Android/create.bat",
+		"/E/Codes/Android/MusicPlayer_old/gradlew.bat",
+		"/E/Codes/Android/MusicPlayer/build.gradle",
+		"/E/Codes/Android/MusicPlayerffffff/gradlew.bat",
+		"/D/Program Files/Sublime Text 2/Data/Packages/User/Default (Windows).sublime-keymap",
+		"/D/Program Files/Sublime Text 2/Data/Packages/SFTP/Default (Windows).sublime-keymap",
+		"/C/users/kei/appdata/local/temp/sublime-sftp-browse-1443786938/blog/home/kei/dev/blog/_includes/head.html",
+		"/D/Program Files/Sublime Text 2/Data/Packages/User/sftp_servers/blog",
+		"/F/backup/blog-backup/blog/blog_sftp",
+		"/D/Program Files/Sublime Text 2/Data/Packages/User/sftp_servers/blog_sftp",
+		"/F/backup/blog-backup/blog/blog.sftp",
+		"/F/backup/blog-backup/blog/blog",
+		"/C/Users/kei/.ssh/id_rsa.pub",
+		"/C/Users/kei/.ssh/osc.pub",
+		"/C/Users/kei/Desktop/sublime.reg",
+		"/F/backup/blog-backup/blog/README.md",
+		"/E/Codes/Java/SublimeText/wechat-sdk/src/me/keiwu/wechat/sdk/api/WechatSDK.java",
+		"/E/Codes/Java/SublimeText/wechat-sdk/src/me/keiwu/wechat/sdk/util/StringUtil.java",
+		"/E/Codes/Java/SublimeText/wechat-sdk/src/me/keiwu/wechat/sdk/service/WechatSDKImpl.java",
+		"/D/Program Files/Sublime Text 2/Data/Packages/SublimeTmpl/templates/java.tmpl",
+		"/E/Codes/Java/SublimeText/wechat-sdk/src/me/keiwu/wechat-sdk/util/StringUtil.java",
+		"/E/Codes/Java/SublimeText/wechat-sdk/src/me/keiwu/wechat-sdk/api/WechatSDK.java",
+		"/E/Codes/Java/SublimeText/wechat-sdk/src/me/keiwu/wechat/api/WechatSDK.java",
+		"/E/Codes/Java/SublimeText/wechat-sdk/wechat.sublime-project",
+		"/E/Codes/Java/SublimeText/wechat-sdk/wechat.sublime-workspace",
+		"/E/Codes/Java/eclipse/weixin/build.xml",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/weixin/web/WeiXinInterfaceAction.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/weixin/service/impl/WeiXinInterfaceServiceImpl.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/member/web/MemberAction.java",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/WEB-INF/classes/outward/outward-member.xml",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/member/service/impl/MemberService.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/messagepicture/web/MessagePictureAction.java",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/login/business/messagePicture/messagePictureManage.jsp",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/web/UserAction.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/service/IUserService.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/member/dao/IMemberDao.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/member/dao/impl/MemberDao.java",
+		"/D/Program Files (x86)/MentoHUST/Config.ini",
+		"/D/Program Files (x86)/MentoHUST/zqu.mpf",
+		"/D/Codes/Java/eclipse/weixin/update/import_sql.bat",
+		"/D/Codes/Erlang/webserver/.gitignore",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/login/business/privilege/customerAccountManage.jsp",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/login/business/privilege/serviceUserMgr.jsp",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/login/business/privilege/weixinAccountManage.jsp",
+		"/D/Codes/Java/eclipse/weixin/src/resource/action.properties",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/WEB-INF/classes/inner/inner-user.xml",
+		"/D/Codes/Java/eclipse/weixin/src/struts2-config/inner/inner-user.xml",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/login/business/privilege/addServiceUser.jsp",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/util/constant/Constant.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/service/impl/UserServiceImpl.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/web/UserManageAction.java",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/login/business/weixinManage/common/menu.jsp",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/WEB-INF/classes/action.properties",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/login/business/promote/promoteList.jsp",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/dao/impl/UserDaoImpl.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/dao/IUserDao.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/core/dao/IGenericDao.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/util/page/Pager.java",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/login/business/privilege/ServiceUserMgr.jsp",
+		"/D/Program Files/Sublime Text 2/Data/Packages/Default/Default (Windows).sublime-keymap",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/core/dao/impl/GenericDaoImpl.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/weixin/web/WeixinMenuAction.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/domain/privilege/ServiceUser.hbm.xml",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/domain/privilege/ServiceUser.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/domain/privilege/User.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/domain/privilege/ServiceUser.xml",
+		"/D/Codes/Java/eclipse/weixin/update/15.01.25/weixin.sql",
+		"/D/Codes/Java/eclipse/weixin/src/resource/applicationContext.xml",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/WEB-INF/web.xml",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/booking/web/BookingSmsTemplateAction.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/service/impl/UserSettingsServiceImpl.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/service/IUserSettingsService.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/util/debug/UpdateDatabase.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/util/StringConverter.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/util/FileUtil.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/domain/privilege/Department.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/booking/dao/impl/TicketRecordDaoImpl.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/util/MD5.java",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/jsp/outward/login.jsp",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/web/RoleAction.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/web/ModuleAction.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/privilege/web/MenuAction.java",
+		"/D/Codes/Java/eclipse/weixin/WebRoot/common/common.jsp",
+		"/D/Codes/Java/eclipse/weixin/.gitignore",
+		"/D/Codes/Java/eclipse/weixin/update/updatedb.bat",
+		"/D/Codes/Java/eclipse/weixin/update/readme.txt",
+		"/D/Codes/Java/eclipse/weixin/update/14.12.13/weixin.sql",
+		"/C/Users/kei/Desktop/娱乐软件/wifi综合设置脚本.bat",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/counterservice/web/CounterServiceAction.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/util/filter/PrivilegeFilter.java",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/util/filter/ActionDebugInterceptor.java",
+		"/D/Codes/Java/eclipse/weixin/build.xml",
+		"/D/Codes/Java/eclipse/weixin/src/java/com/pk/platform/business/core/web/GenericAction.java",
+		"/C/Users/kei/Desktop/wp_term_relationships.sql",
+		"/C/Users/kei/Desktop/wp_term_taxonomy.sql",
+		"/C/Users/kei/Desktop/wp_terms.sql",
+		"/C/Users/kei/Desktop/wp_comments.sql",
+		"/C/Users/kei/Desktop/wp_commentmeta.sql",
+		"/C/Users/kei/Desktop/wp_postmeta.sql",
+		"/C/Users/kei/Desktop/wp_posts.sql",
+		"/E/blog-backup/backup/backup-db141028-17.sql",
+		"/E/blog-backup/backup/backup-db141105-03.sql",
+		"/C/Users/kei/Desktop/keiwu/sae_app_wizard.xml",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/D/Codes/Java/eclipse/weixin/src/struts2-config/outward/outward-user.xml",
+		"/D/Codes/Java/eclipse/weixin/src/resource/mail.properties",
+		"/D/Program Files/goagent-3.2.1/local/proxy.ini",
+		"/C/Users/kei/Desktop/keiwu/wp-config.php",
+		"/C/Users/kei/Desktop/UserAction.java",
+		"/C/Users/kei/Desktop/Constant.java",
+		"/D/Program Files/goagent-3.2.0/local/proxy.ini",
+		"/D/Program Files/GoAgent-v3.2.3/local/proxy.ini",
+		"/C/Users/kei/Desktop/娱乐软件/wifi.bat",
+		"/D/Program Files/GoAgent-v3.2.3/local/SwitchyOptions.bak",
+		"/D/Program Files/GoAgent/local/proxy.ini",
+		"/C/Users/kei/Desktop/goagent-goagent-v3.2.3-27-gd2a7126/goagent-goagent-d2a7126/local/proxy.ini",
+		"/D/Program Files/GoAgent/server/php/index.js",
+		"/D/Program Files/GoAgent/local/GeoIP.dat",
+		"/D/Program Files/GoAgent/README.md",
+		"/C/Users/kei/Desktop/TL-X30-01.20.0000/升级程序/config.ini",
+		"/C/Users/kei/.android/adb_usb.ini"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"*.java,*.xml",
+			"*.java",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Button",
+			"ImageView",
+			"background",
+			"ImageView",
+			"Button",
+			"controller_container",
+			"drawable",
+			"50dp",
+			"next_btn_side_length",
+			"50dp",
+			"40dp",
+			"bottom_btn",
+			"space",
+			"highlight",
+			"findViewById",
+			"currentFragment",
+			"package",
+			"high",
+			"head",
+			"space",
+			"resetPassword",
+			"reset",
+			".addServiceUser",
+			"basePath",
+			"exist",
+			"getMessageAction\\",
+			"existKeywords.",
+			"existKeywords.action",
+			"checkexist",
+			"Gen",
+			"saveOrUpdate",
+			"saveOr",
+			"20",
+			"RandomTimestampString",
+			"RandomTimestampString(int",
+			"random",
+			"package",
+			"login",
+			"updatePassword",
+			"serviceUser",
+			"ServiceUser",
+			"serviceUser",
+			"ServiceUser",
+			"serviceUser",
+			"ServiceUser",
+			"queryServieUsersByServiceUser",
+			"queryByServiceUser",
+			"password",
+			"addServiceUser",
+			"ctrl+shift+t",
+			"password",
+			"addUserId",
+			"inner/user/checkDealer.action",
+			"ctrl+k",
+			"ADD_USER_RET_EXIST_USER",
+			"addServiceUser",
+			"0",
+			"HashMap",
+			"JSONArray",
+			"			\n",
+			"addUserId",
+			"\n",
+			"saveOrUpdate",
+			"serviceUser",
+			"ServiceUser",
+			"serviceUser",
+			"ServiceUser",
+			"addId",
+			"AddId",
+			"addId",
+			"AddId",
+			"addId",
+			"UserId",
+			"serviceUser",
+			"ServiceUser",
+			"serviceUser",
+			"ServiceUser",
+			"userDao",
+			"saveOrUpdate",
+			"s",
+			"saveOrUpdate",
+			"parentUser",
+			"saveOrUpdate",
+			"JSONObject",
+			"addServiceUser",
+			"JSONObject",
+			"addserviceuser",
+			"queryUserById",
+			"addServiceUser",
+			"queryUserById",
+			"addServiceUser",
+			"UpdateDatabase",
+			"queryByServiceUser",
+			"username",
+			");\n",
+			"RandomString",
+			"random",
+			"new Date",
+			"addId",
+			"bat",
+			"更新数据库脚本v1",
+			"db",
+			"checkUser",
+			"非法访问",
+			"其他账号的userId",
+			"其他账号",
+			"其他",
+			"println",
+			"其他帐号",
+			"sv",
+			"password",
+			"LOCK TABLES .*\\n",
+			"UNLOCK TABLES;",
+			"/\\*!.*",
+			"UNLOCK TABLES;",
+			"LOCK TABLES .*\\n",
+			"/\\*!.*",
+			"-- INSERT INTO",
+			"/\\*!.*",
+			"time_zone",
+			"UNLOCK TABLES;",
+			"LOCK TABLES .*\\n",
+			"LOCK TABLES.*\\n",
+			"lwl02n",
+			"lwl02nxl0",
+			"lwl02nxl04_pma",
+			"userService",
+			"UserService"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"serviceUser",
+			"",
+			"INSERT INTO",
+			"",
+			"System.out.println"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 38.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
+	"output.sftp":
+	{
+		"height": 154.0
+	},
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"mainf",
+				"app/src/main/AndroidManifest.xml"
+			],
+			[
+				"dime",
+				"app/src/main/res/values/dimens.xml"
+			],
+			[
+				"color",
+				"app/src/main/res/values/color.xml"
+			],
+			[
+				"activixm",
+				"app/src/main/res/layout/activity_main.xml"
+			],
+			[
+				"main",
+				"app/src/main/java/me/keiwu/musicplayer/MainActivity.java"
+			],
+			[
+				"useraction",
+				"src/java/com/pk/platform/business/privilege/web/UserAction.java"
+			],
+			[
+				"getmessagepictureaction",
+				"src/java/com/pk/platform/business/messagepicture/web/MessagePictureAction.java"
+			],
+			[
+				"messagepjsp",
+				"WebRoot/jsp/login/business/messagePicture/messagePictureList.jsp"
+			],
+			[
+				"memberserve",
+				"src/java/com/pk/platform/business/member/service/impl/MemberService.java"
+			],
+			[
+				"memberaction",
+				"src/java/com/pk/platform/business/member/web/MemberAction.java"
+			],
+			[
+				"member",
+				"WebRoot/WEB-INF/classes/outward/outward-member.xml"
+			],
+			[
+				"weixininterface",
+				"src/java/com/pk/platform/business/weixin/service/impl/WeiXinInterfaceServiceImpl.java"
+			],
+			[
+				"interface",
+				"src/java/com/pk/platform/business/weixin/web/WeiXinInterfaceAction.java"
+			],
+			[
+				"messagepic",
+				"WebRoot/jsp/login/business/messagePicture/messagePictureList.jsp"
+			],
+			[
+				"stringconverter",
+				"src/java/com/pk/platform/util/StringConverter.java"
+			],
+			[
+				".bat",
+				"update/import_sql.bat"
+			],
+			[
+				"outwarduser",
+				"src/struts2-config/outward/outward-user.xml"
+			],
+			[
+				"inneruser",
+				"src/struts2-config/inner/inner-user.xml"
+			],
+			[
+				"userac",
+				"src/java/com/pk/platform/business/privilege/web/UserAction.java"
+			],
+			[
+				"userdao",
+				"src/java/com/pk/platform/business/privilege/dao/impl/UserDaoImpl.java"
+			],
+			[
+				"userservice",
+				"src/java/com/pk/platform/business/privilege/service/IUserService.java"
+			],
+			[
+				"igener",
+				"src/java/com/pk/platform/business/core/dao/IGenericDao.java"
+			],
+			[
+				"action",
+				"src/resource/action.properties"
+			],
+			[
+				"inner-user",
+				"src/struts2-config/inner/inner-user.xml"
+			],
+			[
+				"usermanageac",
+				"src/java/com/pk/platform/business/privilege/web/UserManageAction.java"
+			],
+			[
+				"usermanage",
+				"src/java/com/pk/platform/business/privilege/web/UserManageAction.java"
+			],
+			[
+				"user.java",
+				"src/java/com/pk/platform/domain/privilege/User.java"
+			],
+			[
+				"servicer",
+				"src/java/com/pk/platform/domain/privilege/ServiceUser.xml"
+			],
+			[
+				"serviceuser",
+				"src/java/com/pk/platform/domain/privilege/ServiceUser.java"
+			],
+			[
+				"web.xml",
+				"WebRoot/WEB-INF/web.xml"
+			],
+			[
+				"userser",
+				"src/java/com/pk/platform/business/privilege/service/IUserService.java"
+			],
+			[
+				"constant",
+				"src/java/com/pk/platform/util/constant/Constant.java"
+			],
+			[
+				"inner-",
+				"src/struts2-config/inner/inner-user.xml"
+			],
+			[
+				"string",
+				"src/java/com/pk/platform/util/StringConverter.java"
+			],
+			[
+				"md5",
+				"src/java/com/pk/platform/util/MD5.java"
+			],
+			[
+				"usermanageaction",
+				"src/java/com/pk/platform/business/privilege/web/UserManageAction.java"
+			],
+			[
+				"usermanaact",
+				"src/java/com/pk/platform/business/privilege/web/UserManageAction.java"
+			],
+			[
+				"comm.js",
+				"WebRoot/common/common.jsp"
+			],
+			[
+				"loginjsp",
+				"WebRoot/jsp/outward/login.jsp"
+			],
+			[
+				"privi",
+				"src/java/com/pk/platform/util/filter/PrivilegeFilter.java"
+			],
+			[
+				"debug",
+				"src/java/com/pk/platform/util/filter/ActionDebugInterceptor.java"
+			],
+			[
+				"build",
+				"build.xml"
+			],
+			[
+				"generic",
+				"src/java/com/pk/platform/business/core/web/GenericAction.java"
+			],
+			[
+				"constat",
+				"src/java/com/pk/platform/util/constant/Constant.java"
+			],
+			[
+				"outward-user",
+				"src/struts2-config/outward/outward-user.xml"
+			],
+			[
+				"mail",
+				"src/resource/mail.properties"
+			],
+			[
+				"memberlist",
+				"WebRoot/jsp/login/business/member/memberList.jsp"
+			],
+			[
+				"member.jsp",
+				"WebRoot/jsp/login/business/member/memberList.jsp"
+			],
+			[
+				"login.jsp",
+				"WebRoot/jsp/outward/login.jsp"
+			],
+			[
+				"mail.",
+				"src/resource/mail.properties"
+			],
+			[
+				"nvitecodeapply",
+				"src/java/com/pk/platform/domain/privilege/InvitecodeApply.java"
+			],
+			[
+				"priviaction.java",
+				"src/java/com/pk/platform/business/privilege/web/PrivilegeAction.java"
+			],
+			[
+				"invite.java",
+				"src/java/com/pk/platform/domain/privilege/InviteCode.java"
+			],
+			[
+				"vip",
+				"WebRoot/jsp/outward/vipCard/phone.jsp"
+			],
+			[
+				"vipca",
+				"WebRoot/temp/vipCard.jsp"
+			],
+			[
+				"masstext",
+				"src/java/com/pk/platform/business/masstext/web/MassTextAction.java"
+			],
+			[
+				"membersett",
+				"src/java/com/pk/platform/domain/member/MemberSettings.java"
+			],
+			[
+				"memberact",
+				"src/java/com/pk/platform/business/member/web/MemberAction.java"
+			],
+			[
+				"membersettin",
+				"WebRoot/jsp/login/business/member/memberSettings.jsp"
+			],
+			[
+				"web.x",
+				"WebRoot/WEB-INF/web.xml"
+			],
+			[
+				"server",
+				"src/com/java/im/demo/ServerDemo.java"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/E/Codes/Java/SublimeText/wechat/wechat.sublime-project"
+			],
+			[
+				"im",
+				"/E/Codes/Java/eclipse/IM/im.sublime-project"
+			],
+			[
+				"youhua",
+				"/D/Codes/Java/eclipse/youhuan/youhuan.sublime-project"
+			],
+			[
+				"web",
+				"/D/Codes/Erlang/webserver/webserver.sublime-project"
+			],
+			[
+				"test",
+				"/D/Codes/Erlang/test/test.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 208.0,
+	"status_bar_visible": true
+}

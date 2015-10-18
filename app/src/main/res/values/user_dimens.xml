@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top">10dp</dimen>
+    <dimen name="margin_left">15dp</dimen>
+
+
+
+    <dimen name="cover_container_height">380dp</dimen>
+
+    <dimen name="music_text_width">300dp</dimen>
+
+    <dimen name="music_title_text_size">25dp</dimen>
+    <dimen name="music_title_text_height">40dp</dimen>
+    <dimen name="music_desc_text_size">15dp</dimen>
+    <dimen name="music_desc_text_height">30dp</dimen>
+    <dimen name="favourite_btn_side_length">22dp</dimen>
+
+    <dimen name="progress_container_height">25dp</dimen>
+    <dimen name="progress_line_height">1.5dp</dimen>
+    <dimen name="progress_line_width">250dp</dimen>
+    <dimen name="time_display_width">50dp</dimen>
+    <dimen name="time_display_height">18dp</dimen>
+    <dimen name="time_text_size">15dp</dimen>
+
+
+
+    <dimen name="controller_height">100dp</dimen>
+    <dimen name="play_btn_side_length">65dp</dimen>
+    <dimen name="next_btn_side_length">50dp</dimen>
+    <dimen name="play_btn_horizontal_margin">50dp</dimen>
+
+    <dimen name="bottom_tab_height">47dp</dimen>
+    <dimen name="bottom_btn_side_length">22dp</dimen>
+    <dimen name="bottom_btn_horizontal_margin">45dp</dimen>
+
+    <dimen name="bottom_tab_line_height">0.1dp</dimen>
+</resources>
