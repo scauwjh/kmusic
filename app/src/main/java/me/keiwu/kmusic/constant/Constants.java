@@ -7,10 +7,6 @@ package me.keiwu.kmusic.constant;
  */
 public final class Constants {
 
-    public static final String LOG_INFO_TAG = "kei_info";
-
-    public static final Integer KMUSIC_STATE_PAUSE = 0;
-
-    public static final Integer KMUSIC_STATE_PLAY = 1;
+    public static final String LOG_TAG = "log_tag";
 
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KMusic</string>
+    <string name="default_music_title">K-Music</string>
+    <string name="default_music_desc">我的音乐听我的！</string>
 </resources>

@@ -56,19 +56,21 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
                         <TextView
+                            android:id="@+id/music_title"
                             android:layout_width="@dimen/music_text_width"
                             android:layout_height="@dimen/music_title_text_height"
                             android:layout_marginTop="@dimen/margin_top"
                             android:layout_marginLeft="@dimen/margin_left"
-                            android:text="Butter Fly"
+                            android:text="@string/default_music_title"
                             android:textColor="@color/default_theme_color"
                             android:textSize="@dimen/music_title_text_size"/>
 
                         <TextView
+                            android:id="@+id/music_desc"
                             android:layout_width="@dimen/music_text_width"
                             android:layout_height="@dimen/music_desc_text_height"
                             android:layout_marginLeft="@dimen/margin_left"
-                            android:text="Butter Fly - 和田光司"
+                            android:text="@string/default_music_desc"
                             android:textStyle="italic"
                             android:textColor="@color/default_theme_color"
                             android:textSize="@dimen/music_desc_text_size"/>
@@ -113,8 +115,9 @@
                         android:layout_height="@dimen/time_display_height"
                         android:gravity="center">
                         <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
+                            android:id="@+id/progress_dot"
+                            android:layout_width="@dimen/progress_dot_side_length"
+                            android:layout_height="@dimen/progress_dot_side_length"
                             android:tint="@color/default_theme_color"
                             android:src="@color/Grey"/>
                         <ImageView
@@ -131,7 +134,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="04:18"
+                            android:text="00:00"
                             android:textColor="@color/default_theme_color"
                             android:textSize="@dimen/time_text_size"/>
                     </LinearLayout>
