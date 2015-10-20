@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -86,6 +87,7 @@ public class MainActivity extends Activity implements OnClickListener {
         KMusic kMusic = KMusic.getInstance();
         kMusic.setOnCompleteListener(completionListener);
         setPlaybackButtonDrawable(kMusic);
+        initMusicInfo();
     }
 
     private void setOnClickListener() {
@@ -176,9 +178,15 @@ public class MainActivity extends Activity implements OnClickListener {
 
     private void setMusicInfo(String title, String desc) {
         TextView musicTitle = (TextView)findViewById(R.id.music_title);
-        musicTitle.setText(title);
         TextView musicDesc = (TextView)findViewById(R.id.music_desc);
+        musicTitle.setText(title);
         musicDesc.setText(desc);
     }
 
+    private void initMusicInfo() {
+        TextView musicTitle = (TextView)findViewById(R.id.music_title);
+        TextView musicDesc = (TextView)findViewById(R.id.music_desc);
+        musicTitle.setMovementMethod(ScrollingMovementMethod.getInstance());
+        musicDesc.setMovementMethod(ScrollingMovementMethod.getInstance());
+    }
 }

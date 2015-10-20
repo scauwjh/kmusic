@@ -63,7 +63,10 @@
                             android:layout_marginLeft="@dimen/margin_left"
                             android:text="@string/default_music_title"
                             android:textColor="@color/default_theme_color"
-                            android:textSize="@dimen/music_title_text_size"/>
+                            android:textSize="@dimen/music_title_text_size"
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"/>
 
                         <TextView
                             android:id="@+id/music_desc"
@@ -73,7 +76,10 @@
                             android:text="@string/default_music_desc"
                             android:textStyle="italic"
                             android:textColor="@color/default_theme_color"
-                            android:textSize="@dimen/music_desc_text_size"/>
+                            android:textSize="@dimen/music_desc_text_size"
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"/>
                     </LinearLayout>
 
                     <LinearLayout
