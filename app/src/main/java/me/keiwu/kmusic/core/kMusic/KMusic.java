@@ -44,6 +44,10 @@ public class KMusic {
         return player.isPlaying();
     }
 
+    public Integer getCurrentPosition () {
+        return player.getCurrentPosition();
+    }
+
     public void seekTo(Integer msec) {
         player.seekTo(msec);
     }

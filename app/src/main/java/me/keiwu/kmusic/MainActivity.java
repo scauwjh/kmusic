@@ -120,7 +120,7 @@ public class MainActivity extends Activity implements OnClickListener {
         if (musicList == null || musicList.size() <= 0)
             return;
         Integer trackNum = kMusic.getTrackNum() + 1;
-        if (trackNum > musicList.size())
+        if (trackNum >= musicList.size())
             trackNum = 0;
         String musicPath = musicList.get(trackNum);
         initPlay(musicPath, trackNum);
@@ -134,7 +134,7 @@ public class MainActivity extends Activity implements OnClickListener {
             return;
         Integer trackNum = kMusic.getTrackNum() - 1;
         if (trackNum < 0)
-            trackNum = musicList.size();
+            trackNum = musicList.size() - 1;
         String musicPath = musicList.get(trackNum);
         initPlay(musicPath, trackNum);
     }
@@ -170,17 +170,22 @@ public class MainActivity extends Activity implements OnClickListener {
     private void initPlay(String musicPath, Integer initTrackNum) {
         String title = musicPath.substring(musicPath.lastIndexOf("/") + 1, musicPath.lastIndexOf("."));
         String desc = musicPath.substring(musicPath.lastIndexOf("/") + 1);
-        setMusicInfo(title, desc);
+        reSetMusicInfo(title, desc);
         KMusic kMusic = KMusic.getInstance();
         kMusic.initPlay(musicPath, initTrackNum);
         setPlaybackButtonDrawable(kMusic);
     }
 
-    private void setMusicInfo(String title, String desc) {
+    private void reSetMusicInfo(String title, String desc) {
         TextView musicTitle = (TextView)findViewById(R.id.music_title);
         TextView musicDesc = (TextView)findViewById(R.id.music_desc);
+        TextView progressTime = (TextView)findViewById(R.id.progress_time);
+        TextView endTime = (TextView)findViewById(R.id.end_time);
         musicTitle.setText(title);
         musicDesc.setText(desc);
+        progressTime.setText("00:00");
+        endTime.setText("00:00");
+
     }
 
     private void initMusicInfo() {
