@@ -1,6 +1,5 @@
-package me.keiwu.kmusic.core.directory;
+package me.keiwu.kmusic.core;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import me.keiwu.kmusic.util.FileManager;

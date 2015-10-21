@@ -1,10 +1,11 @@
-package me.keiwu.kmusic;
+package me.keiwu.kmusic.activity;
 
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.media.MediaPlayer.OnErrorListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -13,16 +14,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
+import me.keiwu.kmusic.R;
 import me.keiwu.kmusic.constant.Constants;
-import me.keiwu.kmusic.core.directory.MusicManager;
-import me.keiwu.kmusic.core.kMusic.KMusic;
+import me.keiwu.kmusic.core.MusicManager;
+import me.keiwu.kmusic.core.KMusic;
 
 
 /**
@@ -35,6 +35,15 @@ public class MainActivity extends Activity implements OnClickListener {
     private ImageButton btnPrevious;
     private ImageButton btnNext;
     private ImageButton btnFavourite;
+    private ImageView btnOrder;
+
+
+    private Integer order;
+    private Integer musicId;
+    private Integer maxMusicId;
+
+
+    private KMusic kMusic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +80,8 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.btn_favourite:
                 actionFavourite();
+            case R.id.btn_order:
+                actionOrder();
             default:
                 break;
         }
@@ -78,15 +89,23 @@ public class MainActivity extends Activity implements OnClickListener {
 
 
     private void userInit() {
+        this.order = Constants.ORDER_INIT;
         OnCompletionListener completionListener = new OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
+                Log.i(Constants.LOG_TAG, "onCompletion");
                 actionNext();
             }
         };
-        KMusic kMusic = KMusic.getInstance();
-        kMusic.setOnCompleteListener(completionListener);
-        setPlaybackButtonDrawable(kMusic);
+        OnErrorListener errorListener = new OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                Log.i(Constants.LOG_TAG, "onError: what=" + what + " extra=" + extra);
+                return false;
+            }
+        };
+        kMusic = new KMusic(completionListener, errorListener);
+        setPlaybackButtonDrawable();
         initMusicInfo();
     }
 
@@ -102,51 +121,69 @@ public class MainActivity extends Activity implements OnClickListener {
 
         btnFavourite = (ImageButton) findViewById(R.id.btn_favourite);
         btnFavourite.setOnClickListener(this);
+
+        btnOrder = (ImageView) findViewById(R.id.btn_order);
+        btnOrder.setOnClickListener(this);
     }
 
     private void actionPlay() {
         Log.i(Constants.LOG_TAG, "play action");
-        ArrayList<String> musicList = MusicManager.getInstance().getMusicList();
-        if (musicList == null || musicList.size() <= 0)
-            return;
-        String initMusicPath = musicList.get(0);
-        playback(initMusicPath, 0);
+        playback();
     }
 
     private void actionNext() {
         Log.i(Constants.LOG_TAG, "next action");
-        KMusic kMusic = KMusic.getInstance();
         ArrayList<String> musicList = MusicManager.getInstance().getMusicList();
         if (musicList == null || musicList.size() <= 0)
             return;
-        Integer trackNum = kMusic.getTrackNum() + 1;
-        if (trackNum >= musicList.size())
-            trackNum = 0;
-        String musicPath = musicList.get(trackNum);
-        initPlay(musicPath, trackNum);
+        this.maxMusicId = musicList.size() - 1;
+        Integer musicId = getNextMusicId(this.maxMusicId);
+        String musicPath = musicList.get(musicId);
+        initPlay(musicPath, musicId);
     }
 
     private void actionPrevious() {
         Log.i(Constants.LOG_TAG, "previous action");
-        KMusic kMusic = KMusic.getInstance();
         ArrayList<String> musicList = MusicManager.getInstance().getMusicList();
         if (musicList == null || musicList.size() <= 0)
             return;
-        Integer trackNum = kMusic.getTrackNum() - 1;
-        if (trackNum < 0)
-            trackNum = musicList.size() - 1;
-        String musicPath = musicList.get(trackNum);
-        initPlay(musicPath, trackNum);
+        this.maxMusicId = musicList.size() - 1;
+        Integer musicId = getPrevMusicId(this.maxMusicId);
+        String musicPath = musicList.get(musicId);
+        initPlay(musicPath, musicId);
     }
 
     private void actionFavourite() {
         Log.i(Constants.LOG_TAG, "favourite action");
         // just for test
-        KMusic.getInstance().seekTo(240000);
+        kMusic.seekTo(240000);
+    }
+
+    private void actionOrder() {
+        this.order ++;
+        if (Constants.ORDER_REPEAT_ALL.equals(this.order)) {
+            btnOrder.setImageResource(R.drawable.bottom_btn_repeat_all);
+        } else if (Constants.ORDER_RANDOM.equals(this.order)) {
+            btnOrder.setImageResource(R.drawable.bottom_btn_random);
+        } else if (Constants.ORDER_REPEAT_ONE.equals(this.order)) {
+            btnOrder.setImageResource(R.drawable.bottom_btn_repeat_one);
+        } else {
+            this.order = Constants.ORDER_INIT;
+            btnOrder.setImageResource(R.drawable.bottom_btn_repeat_all);
+        }
+        Log.i(Constants.LOG_TAG, "order action" + this.order);
     }
 
 
-    private void setPlaybackButtonDrawable(KMusic kMusic) {
+    private void onCompletion() {
+        if (Constants.ORDER_REPEAT_ONE.equals(this.order)) {
+            this.musicId = this.musicId -- >= 0 ? this.musicId : 0;
+        }
+        actionNext();
+    }
+
+
+    private void setPlaybackButtonDrawable() {
         Drawable drawable;
         if (kMusic.isReady() && kMusic.isPlaying()) {
             drawable = getResources().getDrawable(R.drawable.play_start);
@@ -157,23 +194,27 @@ public class MainActivity extends Activity implements OnClickListener {
         btnPlay.setBackground(drawable);
     }
 
-    private void playback(String initMusicPath, Integer initTrackNum) {
-        KMusic kMusic = KMusic.getInstance();
+    private void playback() {
         if (!kMusic.isReady()){
-            initPlay(initMusicPath, initTrackNum);
+            ArrayList<String> musicList = MusicManager.getInstance().getMusicList();
+            if (musicList == null || musicList.size() <= 0)
+                return;
+            this.maxMusicId = musicList.size() - 1;
+            Integer musicId = getInitMusicId(this.maxMusicId);
+            String musicPath = musicList.get(musicId);
+            initPlay(musicPath, musicId);
             return;
         }
         kMusic.playback();
-        setPlaybackButtonDrawable(kMusic);
+        setPlaybackButtonDrawable();
     }
 
-    private void initPlay(String musicPath, Integer initTrackNum) {
+    private void initPlay(String musicPath, Integer musicId) {
         String title = musicPath.substring(musicPath.lastIndexOf("/") + 1, musicPath.lastIndexOf("."));
         String desc = musicPath.substring(musicPath.lastIndexOf("/") + 1);
         reSetMusicInfo(title, desc);
-        KMusic kMusic = KMusic.getInstance();
-        kMusic.initPlay(musicPath, initTrackNum);
-        setPlaybackButtonDrawable(kMusic);
+        kMusic.initPlay(musicPath, musicId);
+        setPlaybackButtonDrawable();
     }
 
     private void reSetMusicInfo(String title, String desc) {
@@ -184,14 +225,48 @@ public class MainActivity extends Activity implements OnClickListener {
         musicTitle.setText(title);
         musicDesc.setText(desc);
         progressTime.setText("00:00");
-        endTime.setText("00:00");
-
+        Integer duration = this.kMusic.getDuration() / 1000;
+        Integer min = duration / 60;
+        Integer sec = duration % 60;
+        endTime.setText(min + ":" + sec);
     }
+
 
     private void initMusicInfo() {
         TextView musicTitle = (TextView)findViewById(R.id.music_title);
         TextView musicDesc = (TextView)findViewById(R.id.music_desc);
         musicTitle.setMovementMethod(ScrollingMovementMethod.getInstance());
         musicDesc.setMovementMethod(ScrollingMovementMethod.getInstance());
+    }
+
+    private Integer getInitMusicId(Integer maxId) {
+        if (Constants.ORDER_RANDOM.equals(this.order)) {
+            this.musicId = (int) (Math.random() * maxId);
+        } else {
+            this.musicId = 0;
+        }
+        return this.musicId;
+    }
+
+    private Integer getNextMusicId(Integer maxId) {
+        if (Constants.ORDER_RANDOM.equals(this.order)) {
+            this.musicId = (int) (Math.random() * maxId);
+        } else if (this.musicId < maxId){
+            this.musicId ++;
+        } else {
+            this.musicId = 0;
+        }
+        return this.musicId;
+    }
+
+    private Integer getPrevMusicId(Integer maxId) {
+        if (Constants.ORDER_RANDOM.equals(this.order)) {
+            this.musicId = (int) (Math.random() * maxId);
+        } else if (this.musicId <= 0) {
+            this.musicId = maxId;
+        } else {
+            this.musicId --;
+        }
+        return this.musicId;
     }
 }
