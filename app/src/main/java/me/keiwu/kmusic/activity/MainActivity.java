@@ -80,6 +80,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.btn_favourite:
                 actionFavourite();
+                break;
             case R.id.btn_order:
                 actionOrder();
                 break;
