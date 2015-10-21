@@ -82,6 +82,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 actionFavourite();
             case R.id.btn_order:
                 actionOrder();
+                break;
             default:
                 break;
         }
@@ -94,7 +95,7 @@ public class MainActivity extends Activity implements OnClickListener {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 Log.i(Constants.LOG_TAG, "onCompletion");
-                actionNext();
+                doOnCompletion();
             }
         };
         OnErrorListener errorListener = new OnErrorListener() {
@@ -175,7 +176,7 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
 
-    private void onCompletion() {
+    private void doOnCompletion() {
         if (Constants.ORDER_REPEAT_ONE.equals(this.order)) {
             this.musicId = this.musicId -- >= 0 ? this.musicId : 0;
         }
@@ -226,8 +227,8 @@ public class MainActivity extends Activity implements OnClickListener {
         musicDesc.setText(desc);
         progressTime.setText("00:00");
         Integer duration = this.kMusic.getDuration() / 1000;
-        Integer min = duration / 60;
-        Integer sec = duration % 60;
+        String min = duration / 60 > 9 ? "" + duration / 60  : "0" + duration / 60;
+        String sec = duration % 60 > 9 ? "" + duration % 60  : "0" + duration % 60;
         endTime.setText(min + ":" + sec);
     }
 
