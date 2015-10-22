@@ -2,6 +2,7 @@ package me.keiwu.kmusic.activity;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -23,6 +24,7 @@ import me.keiwu.kmusic.R;
 import me.keiwu.kmusic.constant.Constants;
 import me.keiwu.kmusic.core.MusicManager;
 import me.keiwu.kmusic.core.KMusic;
+import me.keiwu.kmusic.service.MusicService;
 
 
 /**
@@ -42,6 +44,8 @@ public class MainActivity extends Activity implements OnClickListener {
     private Integer musicId;
     private Integer maxMusicId;
 
+    private Intent intent;
+
 
     private KMusic kMusic;
 
@@ -56,11 +60,14 @@ public class MainActivity extends Activity implements OnClickListener {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         setOnClickListener();
+        intent = new Intent(this, MusicService.class);
+        startService(intent);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+//        bindService(intent)
         userInit();
     }
 
