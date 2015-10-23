@@ -2,13 +2,14 @@ package me.keiwu.kmusic.core;
 
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.media.MediaPlayer.OnErrorListener;
+import android.media.MediaPlayer.TrackInfo;
 import android.util.Log;
 
 import java.io.IOException;
 
 import me.keiwu.kmusic.constant.Constants;
 
-import static android.media.MediaPlayer.*;
 
 
 /**
@@ -18,61 +19,53 @@ public class KMusic {
 
     private MediaPlayer player;
 
-    private OnCompletionListener completionListener;
-
-    private OnErrorListener errorListener;
-
     private Boolean isReady;
 
     public KMusic(OnCompletionListener completionListener,
                   OnErrorListener errorListener) {
-        this.isReady = false;
-        this.player = new MediaPlayer();
+        isReady = false;
+        player = new MediaPlayer();
         player.setOnErrorListener(errorListener);
         player.setOnCompletionListener(completionListener);
     }
 
-
-
     public Boolean isReady() {
-        return this.isReady && player.getAudioSessionId() != 0;
+        return isReady && player !=null && player.getAudioSessionId() != 0;
     }
 
     public Boolean isPlaying() {
-        if (!this.isReady)
+        if (!isReady())
             return false;
         return player.isPlaying();
     }
 
-
-
     public Integer getCurrentPosition() {
-        if (!this.isReady)
+        if (!isReady())
             return null;
         return player.getCurrentPosition();
     }
 
     public Integer getDuration() {
-        if(!this.isReady)
+        if(!isReady())
             return -1;
         return player.getDuration();
     }
 
+    public TrackInfo[] getTrackInfo() {
+        if (!isReady())
+            return null;
+        return player.getTrackInfo();
+    }
+
     public Boolean seekTo(Integer msec) {
-        if (!this.isReady)
+        if (!isReady())
             return false;
         player.seekTo(msec);
         return true;
     }
 
-    public TrackInfo[] getTrackInfo() {
-        if (!this.isReady)
-            return null;
-        return player.getTrackInfo();
-    }
-
     public Boolean playback() {
-        if (!this.isReady)
+        if (!isReady())
             return false;
         if (player.isPlaying()) {
             player.pause();
@@ -82,16 +75,20 @@ public class KMusic {
         return true;
     }
 
-    public Boolean initPlay(String musicPath, Integer musicId) {
-        return initPlay(musicPath, musicId, true);
+    public Boolean initPlay(String musicPath) {
+        if (player == null)
+            return false;
+        return initPlay(musicPath, true);
     }
 
-    public Boolean initPlay(String musicPath, Integer musicId, Boolean autoStart) {
+    public Boolean initPlay(String musicPath, Boolean autoStart) {
+        if (player == null)
+            return false;
         try {
             player.reset();
             player.setDataSource(musicPath);
             player.prepare();
-            this.isReady = true;
+            isReady = true;
             if (autoStart) {
                 player.start();
             }
@@ -99,10 +96,18 @@ public class KMusic {
         } catch (IOException e) {
             Log.e(Constants.LOG_TAG, "IOException: " + e.getMessage());
             e.printStackTrace();
-            this.isReady = true;
+            isReady = false;
             if(player != null)
                 player.reset();
             return false;
         }
+    }
+
+    public void release() {
+        if (player == null)
+            return;
+        player.release();
+        player = null;
+        isReady = false;
     }
 }

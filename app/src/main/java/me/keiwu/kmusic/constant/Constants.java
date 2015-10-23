@@ -9,12 +9,19 @@ public final class Constants {
 
     public static final String LOG_TAG = "log_tag";
 
-    public static final Integer ORDER_INIT = 0;
+    public static final String DEFAULT_MUSIC_TITL = "K-Music";
+    public static final String DEFAULT_MUSIC_DESC = "我的音乐听我的";
+
+
     public static final Integer ORDER_REPEAT_ALL = 0;
     public static final Integer ORDER_REPEAT_ONE = 1;
-    public static final Integer ORDER_RANDOM = 2;
-    public static final Integer ORDER_NO_REPEAT =3;
+    public static final Integer ORDER_NO_REPEAT =2;
+    public static final Integer ORDER_RANDOM = 3;
+    public static final Integer ORDER_MOD = 4;
 
-
+    public static final Integer PLAY_RET_ERR = -1;
+    public static final Integer PLAY_RET_PAUSE = 0;
+    public static final Integer PLAY_RET_PLAY = 1;
+    public static final Integer PLAY_RET_INIT = 2;
 
 }
