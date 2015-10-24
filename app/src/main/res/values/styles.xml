@@ -1,8 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="materialTheme" parent="Theme.AppCompat.Light.NoActionBar">
+         Customize your theme here.
+        <item name="colorPrimary">#717171</item>
+        <item name="colorPrimaryDark">#515151</item>
+        <item name="colorAccent">#BDBDBD</item>
+        <item name="colorControlNormal">#BDBDBD</item>
+        <item name="colorControlActivated">#BDBDBD</item>
+        <item name="colorControlHighlight">#BDBDBD</item>
+        <item name="colorSwitchThumbNormal">#BDBDBD</item>
+        <item name="android:colorButtonNormal">#BDBDBD</item>
+        <item name="android:colorEdgeEffect">#BDBDBD</item>
     </style>
 
 </resources>

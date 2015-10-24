@@ -3,15 +3,15 @@
     android:layout_height="match_parent" >
 
     <RelativeLayout
-        android:id="@+id/main_container"
+        android:id="@+id/main_cntr"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <!-- top: cover_container -->
+        <!-- top: cover_cntr -->
         <RelativeLayout
-            android:id="@+id/cover_container"
+            android:id="@+id/cover_cntr"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/cover_container_height"
+            android:layout_height="@dimen/cover_cntr_height"
             android:background="@color/White" >
             <ImageView
                 android:id="@+id/cover_img"
@@ -24,13 +24,13 @@
         </RelativeLayout>
 
 
-        <!-- middle: middle_container -->
+        <!-- middle: middle_cntr -->
         <RelativeLayout
-            android:id="@+id/middle_container"
+            android:id="@+id/middle_cntr"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottom_tab_line"
-            android:layout_below="@+id/cover_container"
+            android:layout_below="@+id/cover_cntr"
             android:orientation="vertical"
             android:background="@color/White"
             android:gravity="center_horizontal">
@@ -40,7 +40,7 @@
                 android:id="@+id/play_status"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/ctrl_container"
+                android:layout_above="@+id/ctrl_cntr"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:background="@color/White">
@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:layout_above="@+id/progress_container">
+                    android:layout_above="@+id/progress_cntr">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -89,19 +89,19 @@
                         android:gravity="center">
                         <ImageButton
                             android:id="@+id/btn_favourite"
-                            android:layout_width="@dimen/favourite_btn_side_length"
-                            android:layout_height="@dimen/favourite_btn_side_length"
+                            android:layout_width="@dimen/favourite_btn_side_len"
+                            android:layout_height="@dimen/favourite_btn_side_len"
                             android:tint="@color/default_theme_color"
                             android:background="@drawable/heart2"/>
 
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- progress_container -->
+                <!-- progress_cntr -->
                 <LinearLayout
-                    android:id="@+id/progress_container"
+                    android:id="@+id/progress_cntr"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/progress_container_height"
+                    android:layout_height="@dimen/progress_cntr_height"
                     android:layout_alignParentBottom="true"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
@@ -123,8 +123,8 @@
                         android:gravity="center">
                         <ImageView
                             android:id="@+id/progress_dot"
-                            android:layout_width="@dimen/progress_dot_side_length"
-                            android:layout_height="@dimen/progress_dot_side_length"
+                            android:layout_width="@dimen/progress_dot_side_len"
+                            android:layout_height="@dimen/progress_dot_side_len"
                             android:tint="@color/default_theme_color"
                             android:src="@color/Grey"/>
                         <ImageView
@@ -151,7 +151,7 @@
 
             <!-- ctrl container -->
             <LinearLayout
-                android:id="@+id/ctrl_container"
+                android:id="@+id/ctrl_cntr"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/controller_height"
                 android:layout_alignParentBottom="true"
@@ -166,22 +166,22 @@
                     android:orientation="horizontal">
                     <ImageButton
                         android:id="@+id/btn_previous"
-                        android:layout_width="@dimen/next_btn_side_length"
-                        android:layout_height="@dimen/next_btn_side_length"
+                        android:layout_width="@dimen/next_btn_side_len"
+                        android:layout_height="@dimen/next_btn_side_len"
                         android:tint="@color/default_theme_color"
                         android:background="@drawable/previous"/>
                     <ImageButton
                         android:id="@+id/btn_play"
                         android:layout_marginLeft="@dimen/play_btn_horizontal_margin"
-                        android:layout_width="@dimen/play_btn_side_length"
-                        android:layout_height="@dimen/play_btn_side_length"
+                        android:layout_width="@dimen/play_btn_side_len"
+                        android:layout_height="@dimen/play_btn_side_len"
                         android:tint="@color/default_theme_color"
                         android:background="@drawable/play_pause"/>
                     <ImageButton
                         android:id="@+id/btn_next"
                         android:layout_marginLeft="@dimen/play_btn_horizontal_margin"
-                        android:layout_width="@dimen/next_btn_side_length"
-                        android:layout_height="@dimen/next_btn_side_length"
+                        android:layout_width="@dimen/next_btn_side_len"
+                        android:layout_height="@dimen/next_btn_side_len"
                         android:tint="@color/default_theme_color"
                         android:background="@drawable/next"/>
                 </LinearLayout>
@@ -191,7 +191,7 @@
 
         <!-- bottom: bottom container -->
         <LinearLayout
-            android:id="@+id/bottom_container"
+            android:id="@+id/bottom_cntr"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_tab_height"
             android:layout_alignParentBottom="true"
@@ -203,40 +203,70 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <ImageView
+                <!-- back btn -->
+                <ImageButton
                     android:id="@+id/btn_back"
-                    android:layout_width="@dimen/bottom_btn_side_length"
-                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:layout_width="@dimen/bottom_btn_width"
+                    android:layout_height="@dimen/bottom_btn_height"
+                    android:paddingLeft="@dimen/bottom_btn_padding_h"
+                    android:paddingRight="@dimen/bottom_btn_padding_h"
+                    android:paddingTop="@dimen/bottom_btn_padding_v"
+                    android:paddingBottom="@dimen/bottom_btn_padding_v"
                     android:tint="@color/default_theme_color"
+                    android:scaleType="centerInside"
+                    android:background="?android:attr/selectableItemBackground"
                     android:src="@drawable/bottom_btn_back"/>
-                <ImageView
+                <!-- list btn -->
+                <ImageButton
                     android:id="@+id/btn_list"
-                    android:layout_marginLeft="@dimen/bottom_btn_horizontal_margin"
-                    android:layout_width="@dimen/bottom_btn_side_length"
-                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:layout_width="@dimen/bottom_btn_width"
+                    android:layout_height="@dimen/bottom_btn_height"
+                    android:paddingLeft="@dimen/bottom_btn_padding_h"
+                    android:paddingRight="@dimen/bottom_btn_padding_h"
+                    android:paddingTop="@dimen/bottom_btn_padding_v"
+                    android:paddingBottom="@dimen/bottom_btn_padding_v"
                     android:tint="@color/default_theme_color"
-                    android:src="@drawable/bottom_btn_menu"/>
-                <ImageView
+                    android:scaleType="centerInside"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/bottom_btn_list"/>
+                <!-- add btn -->
+                <ImageButton
                     android:id="@+id/btn_add"
-                    android:layout_marginLeft="@dimen/bottom_btn_horizontal_margin"
-                    android:layout_width="@dimen/bottom_btn_side_length"
-                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:layout_width="@dimen/bottom_btn_width"
+                    android:layout_height="@dimen/bottom_btn_height"
+                    android:paddingLeft="@dimen/bottom_btn_padding_h"
+                    android:paddingRight="@dimen/bottom_btn_padding_h"
+                    android:paddingTop="@dimen/bottom_btn_padding_v"
+                    android:paddingBottom="@dimen/bottom_btn_padding_v"
                     android:tint="@color/default_theme_color"
+                    android:scaleType="centerInside"
+                    android:background="?android:attr/selectableItemBackground"
                     android:src="@drawable/bottom_btn_add"/>
-                <ImageView
+                <!-- order btn -->
+                <ImageButton
                     android:id="@+id/btn_order"
-                    android:layout_marginLeft="@dimen/bottom_btn_horizontal_margin"
-                    android:layout_width="@dimen/bottom_btn_side_length"
-                    android:layout_height="@dimen/bottom_btn_side_length"
-                    android:tint="@color/default_theme_color"
+                    android:layout_width="@dimen/bottom_btn_width"
+                    android:layout_height="@dimen/bottom_btn_height"
+                    android:paddingLeft="@dimen/bottom_btn_padding_h"
+                    android:paddingRight="@dimen/bottom_btn_padding_h"
+                    android:paddingTop="@dimen/bottom_btn_padding_v"
+                    android:paddingBottom="@dimen/bottom_btn_padding_v"
+                    android:scaleType="centerInside"
+                    android:background="?android:attr/selectableItemBackground"
                     android:src="@drawable/bottom_btn_default_order"/>
-                <ImageView
+                <!-- menu btn -->
+                <ImageButton
                     android:id="@+id/btn_menu"
-                    android:layout_marginLeft="@dimen/bottom_btn_horizontal_margin"
-                    android:layout_width="@dimen/bottom_btn_side_length"
-                    android:layout_height="@dimen/bottom_btn_side_length"
+                    android:layout_width="@dimen/bottom_btn_width"
+                    android:layout_height="@dimen/bottom_btn_height"
+                    android:paddingLeft="@dimen/bottom_btn_padding_h"
+                    android:paddingRight="@dimen/bottom_btn_padding_h"
+                    android:paddingTop="@dimen/bottom_btn_padding_v"
+                    android:paddingBottom="@dimen/bottom_btn_padding_v"
                     android:tint="@color/default_theme_color"
-                    android:src="@drawable/bottom_btn_menu2"/>
+                    android:scaleType="centerInside"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/bottom_btn_menu"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -245,7 +275,7 @@
             android:id="@+id/bottom_tab_line"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_tab_line_height"
-            android:layout_above="@id/bottom_container"
+            android:layout_above="@id/bottom_cntr"
             android:background="@color/bottom_tab_line_color"/>
 
     </RelativeLayout>

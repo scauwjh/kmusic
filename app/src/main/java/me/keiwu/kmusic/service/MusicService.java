@@ -33,6 +33,7 @@ public class MusicService extends Service {
 
     public MusicService() {
         mOrder = Constants.ORDER_REPEAT_ALL;
+        mIndex = 0;
         mTitle = Constants.DEFAULT_MUSIC_TITL;
         mDescription = Constants.DEFAULT_MUSIC_DESC;
     }
@@ -99,19 +100,31 @@ public class MusicService extends Service {
 
 
     public Boolean playNext() {
+        return playNext(false);
+    }
+    public Boolean playNext(Boolean userSelect) {
         ArrayList<String> musicList = MusicManager.getInstance().getMusicList();
         if (musicList == null || musicList.size() <= 0)
             return false;
-        Integer index = getNextIndex(musicList.size() - 1);
+        Integer index = mIndex;
+        if (!Constants.ORDER_REPEAT_ONE.equals(mOrder) || userSelect) {
+            index = getNextIndex(musicList.size() - 1);
+        }
         String musicPath = musicList.get(index);
         return initPlay(musicPath);
     }
 
     public Boolean playPrevious() {
+        return playPrevious(false);
+    }
+    public Boolean playPrevious(Boolean userSelect) {
         ArrayList<String> musicList = MusicManager.getInstance().getMusicList();
         if (musicList == null || musicList.size() <= 0)
             return false;
-        Integer index = getPrevIndex(musicList.size() - 1);
+        Integer index = mIndex;
+        if (!Constants.ORDER_REPEAT_ONE.equals(mOrder) || userSelect) {
+            index = getNextIndex(musicList.size() - 1);
+        }
         String musicPath = musicList.get(index);
         return initPlay(musicPath);
     }

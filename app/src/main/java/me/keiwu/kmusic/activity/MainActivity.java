@@ -15,18 +15,17 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import me.keiwu.kmusic.R;
 import me.keiwu.kmusic.constant.Constants;
-import me.keiwu.kmusic.core.MusicManager;
 import me.keiwu.kmusic.core.KMusic;
 import me.keiwu.kmusic.service.MusicService;
 import me.keiwu.kmusic.service.MusicService.MusicBinder;
@@ -35,7 +34,7 @@ import me.keiwu.kmusic.service.MusicService.MusicBinder;
 /**
  * Created by kei on 2015/10/10.
  */
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends Activity implements OnClickListener, OnTouchListener {
 
 
     private ImageButton mPlayButton;
@@ -106,6 +105,11 @@ public class MainActivity extends Activity implements OnClickListener {
         }
     }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
+    }
+
 
     private void userInit() {
         initInfo();
@@ -146,6 +150,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private void setOnClickListener() {
         mPlayButton = (ImageButton) findViewById(R.id.btn_play);
         mPlayButton.setOnClickListener(this);
+        mPlayButton.setOnTouchListener(this);
 
         mPreviousButton = (ImageButton) findViewById(R.id.btn_previous);
         mPreviousButton.setOnClickListener(this);
@@ -182,7 +187,7 @@ public class MainActivity extends Activity implements OnClickListener {
     // TODO:
     // change to callback
     private void actionNext() {
-        if (!mService.playNext())
+        if (!mService.playNext(true))
             return;
         setPlaybackButton(true);
         setMusicInfo();
@@ -191,7 +196,7 @@ public class MainActivity extends Activity implements OnClickListener {
     // TODO:
     // change to callback
     private void actionPrevious() {
-        if (!mService.playPrevious())
+        if (!mService.playPrevious(true))
             return;
         setPlaybackButton(true);
         setMusicInfo();
@@ -225,7 +230,10 @@ public class MainActivity extends Activity implements OnClickListener {
     // TODO
     // save 10 music history
     private void doOnCompletion() {
-        actionNext();
+        if (!mService.playNext())
+            return;
+        setPlaybackButton(true);
+        setMusicInfo();
     }
 
 
