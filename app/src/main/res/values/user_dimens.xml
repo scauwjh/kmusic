@@ -5,7 +5,7 @@
 
 
 
-    <dimen name="cover_cntr_height">380dp</dimen>
+    <dimen name="info_cntr_height">210dp</dimen>
 
     <dimen name="music_text_width">300dp</dimen>
 

@@ -3,206 +3,233 @@
     android:layout_height="match_parent" >
 
     <RelativeLayout
-        android:id="@+id/main_cntr"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
-        <!-- top: cover_cntr -->
+        <!-- main container -->
         <RelativeLayout
-            android:id="@+id/cover_cntr"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/cover_cntr_height"
-            android:background="@color/White" >
-            <ImageView
-                android:id="@+id/cover_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:focusable="false"
-                android:background="@drawable/default_cover"
-                android:contentDescription="@null" />
-        </RelativeLayout>
-
-
-        <!-- middle: middle_cntr -->
-        <RelativeLayout
-            android:id="@+id/middle_cntr"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_tab_line"
-            android:layout_below="@+id/cover_cntr"
-            android:orientation="vertical"
-            android:background="@color/White"
-            android:gravity="center_horizontal">
+            android:layout_above="@+id/bottom_tab">
 
-            <!-- play status -->
+            <!-- top: cover_cntr -->
             <RelativeLayout
-                android:id="@+id/play_status"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/ctrl_cntr"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:background="@color/White">
-
-                <!-- Music msg -->
-                <LinearLayout
+                android:layout_above="@+id/info_cntr"
+                android:background="@color/White" >
+                <ImageView
+                    android:id="@+id/cover_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_above="@+id/progress_cntr">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/music_title"
-                            android:layout_width="@dimen/music_text_width"
-                            android:layout_height="@dimen/music_title_text_height"
-                            android:layout_marginTop="@dimen/margin_top"
-                            android:layout_marginLeft="@dimen/margin_left"
-                            android:text="@string/default_music_title"
-                            android:textColor="@color/default_theme_color"
-                            android:textSize="@dimen/music_title_text_size"
-                            android:singleLine="true"
-                            android:ellipsize="marquee"
-                            android:marqueeRepeatLimit="marquee_forever"/>
+                    android:layout_centerInParent="true"
+                    android:focusable="false"
+                    android:background="@drawable/default_cover"
+                    android:contentDescription="@null" />
+            </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/music_desc"
-                            android:layout_width="@dimen/music_text_width"
-                            android:layout_height="@dimen/music_desc_text_height"
-                            android:layout_marginLeft="@dimen/margin_left"
-                            android:text="@string/default_music_desc"
-                            android:textStyle="italic"
-                            android:textColor="@color/default_theme_color"
-                            android:textSize="@dimen/music_desc_text_size"
-                            android:singleLine="true"
-                            android:ellipsize="marquee"
-                            android:marqueeRepeatLimit="marquee_forever"/>
-                    </LinearLayout>
-
+            <!-- middle: info_cntr -->
+            <RelativeLayout
+                android:id="@+id/info_cntr"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_cntr_height"
+                android:layout_alignParentBottom="true"
+                android:background="@color/White"
+                android:gravity="center_horizontal">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/ctrl_cntr"
+                    android:gravity="center_horizontal"
+                    android:background="@color/White">
+                    <!-- Music msg -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/margin_top"
-                        android:gravity="center">
-                        <ImageButton
-                            android:id="@+id/btn_favourite"
-                            android:layout_width="@dimen/favourite_btn_side_len"
-                            android:layout_height="@dimen/favourite_btn_side_len"
-                            android:tint="@color/default_theme_color"
-                            android:background="@drawable/heart2"/>
+                        android:orientation="horizontal"
+                        android:layout_above="@+id/progress_cntr">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/music_title"
+                                android:layout_width="@dimen/music_text_width"
+                                android:layout_height="@dimen/music_title_text_height"
+                                android:layout_marginTop="@dimen/margin_top"
+                                android:layout_marginLeft="@dimen/margin_left"
+                                android:text="@string/default_music_title"
+                                android:textColor="@color/default_theme_color"
+                                android:textSize="@dimen/music_title_text_size"
+                                android:singleLine="true"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit="marquee_forever"/>
+
+                            <TextView
+                                android:id="@+id/music_desc"
+                                android:layout_width="@dimen/music_text_width"
+                                android:layout_height="@dimen/music_desc_text_height"
+                                android:layout_marginLeft="@dimen/margin_left"
+                                android:text="@string/default_music_desc"
+                                android:textStyle="italic"
+                                android:textColor="@color/default_theme_color"
+                                android:textSize="@dimen/music_desc_text_size"
+                                android:singleLine="true"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit="marquee_forever"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/margin_top"
+                            android:gravity="center">
+                            <ImageButton
+                                android:id="@+id/btn_favourite"
+                                android:layout_width="@dimen/favourite_btn_side_len"
+                                android:layout_height="@dimen/favourite_btn_side_len"
+                                android:tint="@color/default_theme_color"
+                                android:background="@drawable/heart2"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
-                </LinearLayout>
 
-                <!-- progress_cntr -->
-                <LinearLayout
-                    android:id="@+id/progress_cntr"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/progress_cntr_height"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    <!-- progress_cntr -->
                     <LinearLayout
-                        android:layout_width="@dimen/time_display_width"
-                        android:layout_height="@dimen/time_display_height"
-                        android:gravity="center">
-                        <TextView
-                            android:id="@+id/progress_time"
+                        android:id="@+id/progress_cntr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="@dimen/time_display_width"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/progress_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="00:00"
+                                android:textColor="@color/default_theme_color"
+                                android:textSize="@dimen/time_text_size"/>
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="00:00"
-                            android:textColor="@color/default_theme_color"
-                            android:textSize="@dimen/time_text_size"/>
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <SeekBar
+                                android:id="@+id/seekbar"
+                                android:layout_width="@dimen/progress_line_width"
+                                android:layout_height="wrap_content"
+                                android:progressDrawable="@color/default_theme_color"
+                                android:thumbTint="@color/default_theme_color"
+                                android:maxHeight="1dip"
+                                android:minHeight="1dip"/>
+                            <!-- <ImageView
+                                android:id="@+id/progress_dot"
+                                android:layout_width="@dimen/progress_dot_side_len"
+                                android:layout_height="@dimen/progress_dot_side_len"
+                                android:tint="@color/default_theme_color"
+                                android:src="@color/Grey"/> -->
+                            <!--<ImageView-->
+                                <!--android:id="@+id/progress_line"-->
+                                <!--android:margin:-->
+                                <!--android:layout_width="@dimen/progress_line_width"-->
+                                <!--android:layout_height="@dimen/progress_line_height"-->
+                                <!--android:tint="@color/default_theme_color"-->
+                                <!--android:src="@color/Grey"/>-->
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="@dimen/time_display_width"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/end_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="00:00"
+                                android:textColor="@color/default_theme_color"
+                                android:textSize="@dimen/time_text_size"/>
+                        </LinearLayout>
+
                     </LinearLayout>
+
+                </RelativeLayout>
+
+                <!-- ctrl container -->
+                <LinearLayout
+                    android:id="@+id/ctrl_cntr"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/controller_height"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:baselineAligned="true"
+                    android:background="@color/White">
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/time_display_height"
-                        android:gravity="center">
-                        <ImageView
-                            android:id="@+id/progress_dot"
-                            android:layout_width="@dimen/progress_dot_side_len"
-                            android:layout_height="@dimen/progress_dot_side_len"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <ImageButton
+                            android:id="@+id/btn_previous"
+                            android:layout_width="@dimen/next_btn_side_len"
+                            android:layout_height="@dimen/next_btn_side_len"
                             android:tint="@color/default_theme_color"
-                            android:src="@color/Grey"/>
-                        <ImageView
-                            android:id="@+id/progress_line"
-                            android:layout_width="@dimen/progress_line_width"
-                            android:layout_height="@dimen/progress_line_height"
+                            android:background="@drawable/previous"/>
+                        <ImageButton
+                            android:id="@+id/btn_play"
+                            android:layout_marginLeft="@dimen/play_btn_horizontal_margin"
+                            android:layout_width="@dimen/play_btn_side_len"
+                            android:layout_height="@dimen/play_btn_side_len"
                             android:tint="@color/default_theme_color"
-                            android:src="@color/Grey"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="@dimen/time_display_width"
-                        android:layout_height="@dimen/time_display_height"
-                        android:gravity="center">
-                        <TextView
-                            android:id="@+id/end_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="00:00"
-                            android:textColor="@color/default_theme_color"
-                            android:textSize="@dimen/time_text_size"/>
+                            android:background="@drawable/play_pause"/>
+                        <ImageButton
+                            android:id="@+id/btn_next"
+                            android:layout_marginLeft="@dimen/play_btn_horizontal_margin"
+                            android:layout_width="@dimen/next_btn_side_len"
+                            android:layout_height="@dimen/next_btn_side_len"
+                            android:tint="@color/default_theme_color"
+                            android:background="@drawable/next"/>
                     </LinearLayout>
                 </LinearLayout>
+
             </RelativeLayout>
 
-            <!-- ctrl container -->
-            <LinearLayout
-                android:id="@+id/ctrl_cntr"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/controller_height"
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:baselineAligned="true"
-                android:background="@color/White">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                    <ImageButton
-                        android:id="@+id/btn_previous"
-                        android:layout_width="@dimen/next_btn_side_len"
-                        android:layout_height="@dimen/next_btn_side_len"
-                        android:tint="@color/default_theme_color"
-                        android:background="@drawable/previous"/>
-                    <ImageButton
-                        android:id="@+id/btn_play"
-                        android:layout_marginLeft="@dimen/play_btn_horizontal_margin"
-                        android:layout_width="@dimen/play_btn_side_len"
-                        android:layout_height="@dimen/play_btn_side_len"
-                        android:tint="@color/default_theme_color"
-                        android:background="@drawable/play_pause"/>
-                    <ImageButton
-                        android:id="@+id/btn_next"
-                        android:layout_marginLeft="@dimen/play_btn_horizontal_margin"
-                        android:layout_width="@dimen/next_btn_side_len"
-                        android:layout_height="@dimen/next_btn_side_len"
-                        android:tint="@color/default_theme_color"
-                        android:background="@drawable/next"/>
-                </LinearLayout>
-            </LinearLayout>
         </RelativeLayout>
 
 
-        <!-- bottom: bottom container -->
+        <!-- bottom tab -->
         <LinearLayout
-            android:id="@+id/bottom_cntr"
+            android:id="@+id/bottom_tab"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_tab_height"
-            android:layout_alignParentBottom="true"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:baselineAligned="true"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
             android:background="@color/White">
+
+            <!-- line -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@color/White">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/bottom_tab_line_height"
+                    android:background="@color/bottom_tab_line_color"/>
+            </LinearLayout>
+
+            <!-- bottom tab -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/White">
                 <!-- back btn -->
                 <ImageButton
                     android:id="@+id/btn_back"
@@ -269,14 +296,6 @@
                     android:src="@drawable/bottom_btn_menu"/>
             </LinearLayout>
         </LinearLayout>
-
-        <!-- bottom tab line -->
-        <View
-            android:id="@+id/bottom_tab_line"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottom_tab_line_height"
-            android:layout_above="@id/bottom_cntr"
-            android:background="@color/bottom_tab_line_color"/>
 
     </RelativeLayout>
 

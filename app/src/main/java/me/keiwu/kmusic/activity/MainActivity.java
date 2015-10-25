@@ -17,11 +17,12 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import me.keiwu.kmusic.R;
@@ -34,7 +35,7 @@ import me.keiwu.kmusic.service.MusicService.MusicBinder;
 /**
  * Created by kei on 2015/10/10.
  */
-public class MainActivity extends Activity implements OnClickListener, OnTouchListener {
+public class MainActivity extends Activity implements OnClickListener, OnSeekBarChangeListener {
 
 
     private ImageButton mPlayButton;
@@ -42,6 +43,7 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
     private ImageButton mNextButton;
     private ImageButton mFavouriteButton;
     private ImageView mOrderButton;
+    private SeekBar mSeekBar;
 
     private KMusic mKMusic;
     private MusicService mService;
@@ -105,11 +107,6 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
         }
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return false;
-    }
-
 
     private void userInit() {
         initInfo();
@@ -150,7 +147,6 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
     private void setOnClickListener() {
         mPlayButton = (ImageButton) findViewById(R.id.btn_play);
         mPlayButton.setOnClickListener(this);
-        mPlayButton.setOnTouchListener(this);
 
         mPreviousButton = (ImageButton) findViewById(R.id.btn_previous);
         mPreviousButton.setOnClickListener(this);
@@ -163,6 +159,9 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
 
         mOrderButton = (ImageView) findViewById(R.id.btn_order);
         mOrderButton.setOnClickListener(this);
+
+        mSeekBar = (SeekBar) findViewById(R.id.seekbar);
+        mSeekBar.setOnSeekBarChangeListener(this);
     }
 
     // TODO:
@@ -262,5 +261,21 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
         musicDesc.setText(mService.getDescription());
         progressTime.setText("00:00");
         endTime.setText(min + ":" + sec);
+        mSeekBar.setMax(duration);
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        mSeekBar.setProgress(progress);
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }
