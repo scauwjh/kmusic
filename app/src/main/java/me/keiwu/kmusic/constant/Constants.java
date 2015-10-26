@@ -12,6 +12,9 @@ public final class Constants {
     public static final String DEFAULT_MUSIC_TITL = "K-Music";
     public static final String DEFAULT_MUSIC_DESC = "我的音乐听我的";
 
+    public static final String INTENT_EXTRA_DURATION = "extra_duration";
+    public static final String INTENT_EXTRA_PROGRESS = "extra_progress";
+
 
     public static final Integer ORDER_REPEAT_ALL = 0;
     public static final Integer ORDER_REPEAT_ONE = 1;

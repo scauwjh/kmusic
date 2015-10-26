@@ -2,9 +2,11 @@ package me.keiwu.kmusic.activity;
 
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -44,18 +46,31 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
     private ImageButton mFavouriteButton;
     private ImageView mOrderButton;
     private SeekBar mSeekBar;
+    private BroadcastReceiver mSeekBarReceiver;
 
-    private KMusic mKMusic;
     private MusicService mService;
-
-
+    
     private ServiceConnection mConnection = new ServiceConnection() {
-
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.i(Constants.LOG_TAG, "connected");
             MusicBinder binder = (MusicBinder) service;
-            mService = binder.getService();
+            // complete and error listener
+            OnCompletionListener completionListener = new OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    Log.i(Constants.LOG_TAG, "onCompletion");
+                    doOnCompletion();
+                }
+            };
+            OnErrorListener errorListener = new OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mp, int what, int extra) {
+                    Log.i(Constants.LOG_TAG, "onError: what=" + what + " extra=" + extra);
+                    return false;
+                }
+            };
+            mService = binder.getService(completionListener, errorListener);
             userInit();
         }
 
@@ -78,7 +93,16 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
         }
         Intent intent = new Intent(this, MusicService.class);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-        setOnClickListener();
+        mSeekBar.setMax(100);
+        setListener();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // mService.release();
+        // mService = null;
+        mService.initNotification();
     }
 
 
@@ -110,7 +134,6 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
 
     private void userInit() {
         initInfo();
-        initKMusic();
         setPlaybackButton(mService.isPlaying());
     }
 
@@ -123,28 +146,10 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
         musicDesc.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
 
-    private void initKMusic() {
-        Log.i(Constants.LOG_TAG, "initKMusic");
-        OnCompletionListener completionListener = new OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Log.i(Constants.LOG_TAG, "onCompletion");
-                doOnCompletion();
-            }
-        };
-        OnErrorListener errorListener = new OnErrorListener() {
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                Log.i(Constants.LOG_TAG, "onError: what=" + what + " extra=" + extra);
-                return false;
-            }
-        };
-        mKMusic = mService.getInitKMusic(completionListener, errorListener);
-    }
 
 
-
-    private void setOnClickListener() {
+    private void setListener() {
+        // onclick listener
         mPlayButton = (ImageButton) findViewById(R.id.btn_play);
         mPlayButton.setOnClickListener(this);
 
@@ -160,27 +165,26 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
         mOrderButton = (ImageView) findViewById(R.id.btn_order);
         mOrderButton.setOnClickListener(this);
 
+        // seek bar listeners
         mSeekBar = (SeekBar) findViewById(R.id.seekbar);
         mSeekBar.setOnSeekBarChangeListener(this);
+
+        mSeekBarReceiver = new BroadcastReceiver(){
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Integer progress = intent.getIntExtra(Constants.INTENT_EXTRA_PROGRESS, 0);
+                Integer duration = intent.getIntExtra(Constants.INTENT_EXTRA_DURATION, 1);
+                mSeekBar.setProgress(progress*100 / duration);
+            }
+
+        };
+        registerReceiver(mSeekBarReceiver, new IntentFilter(MainActivity.class.getName()));
     }
 
     // TODO:
     // change to callback
     private void actionPlay() {
         reSetDrawable(mService.playback());
-    }
-
-    // TODO
-    // state bar
-    private void reSetDrawable(Integer retCode) {
-        if (Constants.PLAY_RET_PLAY.equals(retCode)) {
-            setPlaybackButton(true);
-        } else if (Constants.PLAY_RET_PAUSE.equals(retCode)) {
-            setPlaybackButton(false);
-        } else if (Constants.PLAY_RET_INIT.equals(retCode)) {
-            setPlaybackButton(true);
-            setMusicInfo();
-        }
     }
 
     // TODO:
@@ -221,7 +225,6 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
     // just for test
     private void actionFavourite() {
         Log.i(Constants.LOG_TAG, "favourite action");
-        mKMusic.seekTo(240000);
     }
 
 
@@ -235,6 +238,20 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
         setMusicInfo();
     }
 
+
+
+    // TODO
+    // state bar
+    private void reSetDrawable(Integer retCode) {
+        if (Constants.PLAY_RET_PLAY.equals(retCode)) {
+            setPlaybackButton(true);
+        } else if (Constants.PLAY_RET_PAUSE.equals(retCode)) {
+            setPlaybackButton(false);
+        } else if (Constants.PLAY_RET_INIT.equals(retCode)) {
+            setPlaybackButton(true);
+            setMusicInfo();
+        }
+    }
 
     private void setPlaybackButton(Boolean isPlay) {
         Drawable drawable;
@@ -261,12 +278,11 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
         musicDesc.setText(mService.getDescription());
         progressTime.setText("00:00");
         endTime.setText(min + ":" + sec);
-        mSeekBar.setMax(duration);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        mSeekBar.setProgress(progress);
+        
     }
 
     @Override
