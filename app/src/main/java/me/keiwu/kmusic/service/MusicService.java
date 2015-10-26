@@ -25,27 +25,23 @@ import me.keiwu.kmusic.core.MusicManager;
  */
 public class MusicService extends Service {
 
-    public  static Boolean isRunning;
+    public Boolean isRunning;
 
     private KMusic mKMusic;
-    private Integer mOrder;
     private Integer mIndex;
+    private Integer mOrder;
     private String mTitle;
     private String mDescription;
 
-    private OnCompletionListener mCompletionListener;
-    private OnErrorListener mErrorListener;
     private Intent mProgressIntent;
 
     private final MusicBinder musicBinder = new MusicBinder();
 
     private class ProgressThread implements Runnable {
-        public ProgressThread() {
-            mProgressIntent = new Intent(MainActivity.class.getName());
-        }
         @Override
         public void run() {
             while (isRunning) {
+                // Log.i(Constants.LOG_TAG, "isRunning...");
                 try {
                     TimeUnit.MILLISECONDS.sleep(100);
                     if (!isPlaying())
@@ -63,21 +59,22 @@ public class MusicService extends Service {
 
 
     public MusicService() {
-        isRunning = true;
+        Log.i(Constants.LOG_TAG, "MusicService init");
+        isRunning = false;
         mIndex = 0;
         mOrder = Constants.ORDER_REPEAT_ALL;
         mTitle = Constants.DEFAULT_MUSIC_TITL;
         mDescription = Constants.DEFAULT_MUSIC_DESC;
+        mProgressIntent = new Intent(MainActivity.class.getName());
     }
 
     public class MusicBinder extends Binder {
-
-        public MusicService getService(OnCompletionListener completionListener,
-            OnErrorListener errorListener) {
-            initPlayer(completionListener, errorListener);
+        public MusicService getService() {
             return MusicService.this;
         }
     }
+
+
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -87,17 +84,17 @@ public class MusicService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i(Constants.LOG_TAG, "onCreate start");
-        ProgressThread progress = new ProgressThread();
-        new Thread(progress).start();
+        Log.i(Constants.LOG_TAG, "MusicService onCreate");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.i(Constants.LOG_TAG, "MusicService onDestroy");
         release();
         isRunning = false;
     }
+
 
 
     public void initPlayer(OnCompletionListener completionListener,
@@ -106,6 +103,7 @@ public class MusicService extends Service {
             Log.i(Constants.LOG_TAG, "mKMusic is null, create a new object");
             mKMusic = new KMusic(completionListener, errorListener);
         }
+        Log.i(Constants.LOG_TAG, "initPlayer end");
     }
 
 
@@ -180,7 +178,11 @@ public class MusicService extends Service {
     }
 
     public Boolean isPlaying() {
-        return mKMusic.isReady() && mKMusic.isPlaying();
+        return mKMusic != null && mKMusic.isReady() && mKMusic.isPlaying();
+    }
+
+    public Boolean seekTo(Integer msec) {
+        return mKMusic.seekTo(msec);
     }
 
     public void release() {
@@ -205,6 +207,16 @@ public class MusicService extends Service {
 
     public void removeNotification() {
 
+    }
+
+    public void seekBarSyncStart() {
+        isRunning = true;
+        ProgressThread progress = new ProgressThread();
+        new Thread(progress).start();
+    }
+
+    public void seekBarSyncStop() {
+        isRunning = false;
     }
 
 
