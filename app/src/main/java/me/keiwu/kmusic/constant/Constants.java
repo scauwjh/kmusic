@@ -27,4 +27,8 @@ public final class Constants {
     public static final Integer PLAY_RET_PLAY = 1;
     public static final Integer PLAY_RET_INIT = 2;
 
+
+    public static final Integer MAIN_HANDLER_PROGRESS = 0;
+    public static final Integer MAIN_HANDLER_MUSIC_INFO = 1;
+
 }

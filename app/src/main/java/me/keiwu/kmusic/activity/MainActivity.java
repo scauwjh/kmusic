@@ -39,9 +39,10 @@ import me.keiwu.kmusic.service.MusicService.MusicBinder;
 /**
  * Created by kei on 2015/10/10.
  */
-public class MainActivity extends Activity implements OnClickListener, OnSeekBarChangeListener {
+public class MainActivity extends Activity implements OnClickListener {
 
-    public static Boolean isRunning;
+    public static Boolean seekBarSync;
+    public static Boolean seekBarOnTouching;
 
     private ImageButton mPlayButton;
     private ImageButton mPreviousButton;
@@ -49,6 +50,9 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
     private ImageButton mFavouriteButton;
     private ImageView mOrderButton;
     private SeekBar mSeekBar;
+
+    private TextView mMusicTitle;
+    private TextView mMusicDesc;
     private TextView mProgressTime;
     private TextView mEndTime;
 
@@ -76,7 +80,7 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
         super.onCreate(savedInstanceState);
         Log.i(Constants.LOG_TAG, "MainActivity onCreate");
         initUI();
-        initListener();
+        initView();
         // bind service
         Intent intent = new Intent(this, MusicService.class);
         startService(intent);
@@ -124,15 +128,16 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
-        TextView musicTitle = (TextView) findViewById(R.id.music_title);
-        TextView musicDesc = (TextView) findViewById(R.id.music_desc);
-        musicTitle.setMovementMethod(ScrollingMovementMethod.getInstance());
-        musicDesc.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
 
-    private void initListener() {
-        Log.i(Constants.LOG_TAG, "initListener");
+    private void initView() {
+        Log.i(Constants.LOG_TAG, "initView");
         // text view
+        mMusicTitle = (TextView) findViewById(R.id.music_title);
+        mMusicDesc = (TextView) findViewById(R.id.music_desc);
+        mMusicTitle.setMovementMethod(ScrollingMovementMethod.getInstance());
+        mMusicDesc.setMovementMethod(ScrollingMovementMethod.getInstance());
+
         mProgressTime = (TextView) findViewById(R.id.progress_time);
         mEndTime = (TextView) findViewById(R.id.end_time);
 
@@ -154,7 +159,7 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
 
         // seek bar listeners
         mSeekBar = (SeekBar) findViewById(R.id.seekbar);
-        mSeekBar.setOnSeekBarChangeListener(this);
+        mSeekBar.setOnSeekBarChangeListener(mSeekBarListener);
         mSeekBar.setMax(100);
         // mSeekBarReceiver = new BroadcastReceiver(){
         //     @Override
@@ -186,6 +191,7 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
         mService.initPlayer(completionListener, errorListener);
         seekBarSyncStart();
         setPlaybackButton(mService.isPlaying());
+        setMusicInfo();
     }
 
     // TODO:
@@ -241,8 +247,10 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
     private void doOnCompletion() {
         if (!mService.playNext())
             return;
-        setPlaybackButton(true);
-        setMusicInfo();
+        Message msg =new Message();
+        msg.what = Constants.MAIN_HANDLER_MUSIC_INFO;
+        msg.obj = null;
+        mHandler.sendMessage(msg);
     }
 
 
@@ -272,15 +280,14 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
     }
 
     private void setMusicInfo() {
-        TextView musicTitle = (TextView) findViewById(R.id.music_title);
-        TextView musicDesc = (TextView) findViewById(R.id.music_desc);
-
+        if (mService == null)
+            return;
         Integer duration = mService.getDuration() / 1000;
         String min = duration / 60 > 9 ? "" + duration / 60  : "0" + duration / 60;
         String sec = duration % 60 > 9 ? "" + duration % 60  : "0" + duration % 60;
 
-        musicTitle.setText(mService.getTitle());
-        musicDesc.setText(mService.getDescription());
+        mMusicTitle.setText(mService.getTitle());
+        mMusicDesc.setText(mService.getDescription());
         mProgressTime.setText("00:00");
         mEndTime.setText(min + ":" + sec);
     }
@@ -290,13 +297,14 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what) {
-                case 0:
-                    String data = (String) msg.obj;
-                    mProgressTime.setText(data);
-                    break;
-                default:
-                    break;
+            if (Constants.MAIN_HANDLER_PROGRESS.equals(msg.what)) {
+                String data = (String) msg.obj;
+                mProgressTime.setText(data);
+                return;
+            }
+            if (Constants.MAIN_HANDLER_MUSIC_INFO.equals(msg.what)) {
+                setMusicInfo();
+                return;
             }
         }
     };
@@ -306,12 +314,12 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
     private class ProgressThread implements Runnable {
         @Override
         public void run() {
-            while (isRunning) {
-                // Log.i(Constants.LOG_TAG, "isRunning...");
+            while (seekBarSync) {
+                // Log.i(Constants.LOG_TAG, "seekBarSync...");
                 Message msg =new Message();
                 try {
                     TimeUnit.MILLISECONDS.sleep(100);
-                    if (!mService.isPlaying())
+                    if (seekBarOnTouching && !mService.isPlaying())
                         continue;
                     Integer position = mService.getCurrentPosition() / 1000;
                     Integer duration = mService.getDuration() / 1000;
@@ -320,6 +328,7 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
                     //
                     String min = position / 60 > 9 ? "" + position / 60  : "0" + position / 60;
                     String sec = position % 60 > 9 ? "" + position % 60  : "0" + position % 60;
+                    msg.what = Constants.MAIN_HANDLER_PROGRESS;
                     msg.obj = min + ":" + sec;
                     mHandler.sendMessage(msg);
                 } catch (InterruptedException e) {
@@ -331,30 +340,30 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
     }
 
     private void seekBarSyncStart() {
-        isRunning = true;
+        seekBarSync = true;
         ProgressThread progress = new ProgressThread();
         new Thread(progress).start();
     }
 
     private void seekBarSyncStop() {
-        isRunning = false;
+        seekBarSync = false;
     }
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        // Integer duration = mService.getDuration();
-        // if (!mService.seekTo(duration * progress / 100))
-        //     return;
-        // seekBar.setProgress(progress);
-    }
+    private OnSeekBarChangeListener mSeekBarListener =new OnSeekBarChangeListener() {
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            mService.seekTo(seekBar.getProgress());
+            seekBarOnTouching = false;
+        }
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            seekBarOnTouching = true;
+        }
 
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
-    }
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress,
+                boolean fromUser) {
+        }
+    };
 }
