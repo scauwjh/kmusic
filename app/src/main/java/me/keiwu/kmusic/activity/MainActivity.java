@@ -74,6 +74,12 @@ public class MainActivity extends Activity implements OnClickListener {
         }
     };
 
+    public MainActivity() {
+        seekBarSync = false;
+        seekBarOnTouching = false;
+    }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -282,14 +288,16 @@ public class MainActivity extends Activity implements OnClickListener {
     private void setMusicInfo() {
         if (mService == null)
             return;
-        Integer duration = mService.getDuration() / 1000;
-        String min = duration / 60 > 9 ? "" + duration / 60  : "0" + duration / 60;
-        String sec = duration % 60 > 9 ? "" + duration % 60  : "0" + duration % 60;
-
+        Integer duration = mService.getDuration();
+        String endTime = String.format("%02d:%02d",
+            TimeUnit.MILLISECONDS.toMinutes(duration),
+            TimeUnit.MILLISECONDS.toSeconds(duration) -
+            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration))
+        );
         mMusicTitle.setText(mService.getTitle());
         mMusicDesc.setText(mService.getDescription());
         mProgressTime.setText("00:00");
-        mEndTime.setText(min + ":" + sec);
+        mEndTime.setText(endTime);
     }
 
 
@@ -319,18 +327,12 @@ public class MainActivity extends Activity implements OnClickListener {
                 Message msg =new Message();
                 try {
                     TimeUnit.MILLISECONDS.sleep(100);
-                    if (seekBarOnTouching && !mService.isPlaying())
+                    if (!mService.isPlaying() || seekBarOnTouching)
                         continue;
-                    Integer position = mService.getCurrentPosition() / 1000;
-                    Integer duration = mService.getDuration() / 1000;
+                    Integer position = mService.getCurrentPosition();
+                    Integer duration = mService.getDuration();
                     mSeekBar.setProgress(position*100 / duration);
-                    // Log.i(Constants.LOG_TAG, position + "," + duration);
-                    //
-                    String min = position / 60 > 9 ? "" + position / 60  : "0" + position / 60;
-                    String sec = position % 60 > 9 ? "" + position % 60  : "0" + position % 60;
-                    msg.what = Constants.MAIN_HANDLER_PROGRESS;
-                    msg.obj = min + ":" + sec;
-                    mHandler.sendMessage(msg);
+                    updateProgressTimeMsg(msg, position);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     Log.i(Constants.LOG_TAG, "InterruptedException: " + e.getMessage());
@@ -338,6 +340,17 @@ public class MainActivity extends Activity implements OnClickListener {
             }
         }
     }
+
+    private void updateProgressTimeMsg(Message msg, Integer position) {
+        msg.obj = String.format("%02d:%02d",
+            TimeUnit.MILLISECONDS.toMinutes(position),
+            TimeUnit.MILLISECONDS.toSeconds(position) -
+            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(position))
+        );
+        msg.what = Constants.MAIN_HANDLER_PROGRESS;
+        mHandler.sendMessage(msg);
+    }
+
 
     private void seekBarSyncStart() {
         seekBarSync = true;
@@ -352,7 +365,10 @@ public class MainActivity extends Activity implements OnClickListener {
     private OnSeekBarChangeListener mSeekBarListener =new OnSeekBarChangeListener() {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            mService.seekTo(seekBar.getProgress());
+            Integer position = mService.getDuration() * seekBar.getProgress() / 100;
+            mService.seekTo(position);
+            Message msg = new Message();
+            updateProgressTimeMsg(msg, position);
             seekBarOnTouching = false;
         }
 
@@ -364,6 +380,7 @@ public class MainActivity extends Activity implements OnClickListener {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,
                 boolean fromUser) {
+
         }
     };
 }

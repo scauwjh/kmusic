@@ -237,32 +237,36 @@ public class MusicService extends Service {
     private Integer getInitIndex(Integer maxIndex) {
         if (Constants.ORDER_RANDOM.equals(mOrder)) {
             mIndex = (int) (Math.random() * maxIndex);
-        } else {
-            mIndex = 0;
+            return mIndex;
         }
+        mIndex = 0;
         return mIndex;
     }
 
     private Integer getNextIndex(Integer maxIndex) {
         if (Constants.ORDER_RANDOM.equals(mOrder)) {
             mIndex = (int) (Math.random() * maxIndex);
-        } else if (mIndex < maxIndex){
-            mIndex ++;
-        } else {
-            mIndex = 0;
+            return mIndex;
         }
-        return mIndex;
+        if (mIndex >= maxIndex) {
+            mIndex = 0;
+            return mIndex;
+        }
+        return ++ mIndex;
     }
 
     private Integer getPrevIndex(Integer maxIndex) {
+        if (getCurrentPosition() > Constants.PREV_WAIT_MILLI_SECONDS)
+            return mIndex;
         if (Constants.ORDER_RANDOM.equals(mOrder)) {
             mIndex = (int) (Math.random() * maxIndex);
-        } else if (mIndex <= 0) {
-            mIndex = maxIndex;
-        } else {
-            mIndex --;
+            return mIndex;
         }
-        return mIndex;
+        if (mIndex <= 0) {
+            mIndex = maxIndex;
+            return mIndex;
+        }
+        return -- mIndex;
     }
 
 }

@@ -17,9 +17,9 @@ public final class Constants {
 
 
     public static final Integer ORDER_REPEAT_ALL = 0;
-    public static final Integer ORDER_REPEAT_ONE = 1;
-    public static final Integer ORDER_NO_REPEAT =2;
-    public static final Integer ORDER_RANDOM = 3;
+    public static final Integer ORDER_RANDOM = 1;
+    public static final Integer ORDER_REPEAT_ONE = 2;
+    public static final Integer ORDER_NO_REPEAT =3;
     public static final Integer ORDER_MOD = 4;
 
     public static final Integer PLAY_RET_ERR = -1;
@@ -30,5 +30,9 @@ public final class Constants {
 
     public static final Integer MAIN_HANDLER_PROGRESS = 0;
     public static final Integer MAIN_HANDLER_MUSIC_INFO = 1;
+
+
+    public static final Integer PREV_WAIT_MILLI_SECONDS = 3000;
+
 
 }
