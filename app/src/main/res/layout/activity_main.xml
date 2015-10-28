@@ -1,22 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <!-- main container -->
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_tab">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <!-- top: cover_cntr -->
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/info_cntr"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
                 android:background="@color/White" >
                 <ImageView
                     android:id="@+id/cover_img"
@@ -26,31 +26,33 @@
                     android:focusable="false"
                     android:background="@drawable/default_cover"
                     android:contentDescription="@null" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <!-- middle: info_cntr -->
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/info_cntr"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/info_cntr_height"
-                android:layout_alignParentBottom="true"
                 android:background="@color/White"
+                android:orientation="vertical"
                 android:gravity="center_horizontal">
-                <RelativeLayout
+
+                <!-- music info container -->
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@+id/ctrl_cntr"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:gravity="center_horizontal"
                     android:background="@color/White">
                     <!-- Music msg -->
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_above="@+id/progress_cntr">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <!-- music msg -->
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
                                 android:id="@+id/music_title"
@@ -79,9 +81,10 @@
                                 android:marqueeRepeatLimit="marquee_forever"/>
                         </LinearLayout>
 
+                        <!-- favourite -->
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top"
                             android:gravity="center">
                             <ImageButton
@@ -90,84 +93,65 @@
                                 android:layout_height="@dimen/favourite_btn_side_len"
                                 android:tint="@color/default_theme_color"
                                 android:background="@drawable/heart2"/>
-
                         </LinearLayout>
 
                     </LinearLayout>
+                </LinearLayout>
 
-                    <!-- progress_cntr -->
+                <!-- progress container -->
+                <LinearLayout
+                    android:id="@+id/progress_cntr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
                     <LinearLayout
-                        android:id="@+id/progress_cntr"
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/time_display_width"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="@dimen/time_display_width"
-                            android:layout_height="wrap_content"
-                            android:gravity="center">
-                            <TextView
-                                android:id="@+id/progress_time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="00:00"
-                                android:textColor="@color/default_theme_color"
-                                android:textSize="@dimen/time_text_size"/>
-                        </LinearLayout>
-                        <LinearLayout
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/progress_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <SeekBar
-                                android:id="@+id/seekbar"
-                                android:layout_width="@dimen/progress_line_width"
-                                android:layout_height="wrap_content"
-                                android:progressDrawable="@color/default_theme_color"
-                                android:thumbTint="@color/default_theme_color"
-                                android:maxHeight="1dip"
-                                android:minHeight="1dip"/>
-                            <!-- <ImageView
-                                android:id="@+id/progress_dot"
-                                android:layout_width="@dimen/progress_dot_side_len"
-                                android:layout_height="@dimen/progress_dot_side_len"
-                                android:tint="@color/default_theme_color"
-                                android:src="@color/Grey"/> -->
-                            <!--<ImageView-->
-                                <!--android:id="@+id/progress_line"-->
-                                <!--android:margin:-->
-                                <!--android:layout_width="@dimen/progress_line_width"-->
-                                <!--android:layout_height="@dimen/progress_line_height"-->
-                                <!--android:tint="@color/default_theme_color"-->
-                                <!--android:src="@color/Grey"/>-->
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="@dimen/time_display_width"
-                            android:layout_height="wrap_content"
-                            android:gravity="center">
-                            <TextView
-                                android:id="@+id/end_time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="00:00"
-                                android:textColor="@color/default_theme_color"
-                                android:textSize="@dimen/time_text_size"/>
-                        </LinearLayout>
-
+                            android:text="00:00"
+                            android:textColor="@color/default_theme_color"
+                            android:textSize="@dimen/time_text_size"/>
                     </LinearLayout>
-
-                </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <SeekBar
+                            android:id="@+id/seekbar"
+                            android:layout_width="@dimen/progress_line_width"
+                            android:layout_height="wrap_content"
+                            android:progressDrawable="@color/default_theme_color"
+                            android:thumbTint="@color/default_theme_color"
+                            android:maxHeight="1dip"
+                            android:minHeight="1dip"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="@dimen/time_display_width"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/end_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00"
+                            android:textColor="@color/default_theme_color"
+                            android:textSize="@dimen/time_text_size"/>
+                    </LinearLayout>
+                </LinearLayout>
 
                 <!-- ctrl container -->
                 <LinearLayout
                     android:id="@+id/ctrl_cntr"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/controller_height"
-                    android:layout_alignParentBottom="true"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:baselineAligned="true"
                     android:background="@color/White">
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -196,10 +180,9 @@
                             android:background="@drawable/next"/>
                     </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
 
-            </RelativeLayout>
-
-        </RelativeLayout>
+        </LinearLayout>
 
 
         <!-- bottom tab -->
@@ -209,7 +192,6 @@
             android:layout_height="@dimen/bottom_tab_height"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_alignParentBottom="true"
             android:background="@color/White">
 
             <!-- line -->
@@ -297,6 +279,4 @@
             </LinearLayout>
         </LinearLayout>
 
-    </RelativeLayout>
-
-</FrameLayout>
+</LinearLayout>
