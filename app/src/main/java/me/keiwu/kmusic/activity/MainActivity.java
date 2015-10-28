@@ -197,6 +197,7 @@ public class MainActivity extends Activity implements OnClickListener {
         mService.initPlayer(completionListener, errorListener);
         seekBarSyncStart();
         setPlaybackButton(mService.isPlaying());
+        setOrderButton(mService.getOrder());
         setMusicInfo();
     }
 
@@ -228,17 +229,7 @@ public class MainActivity extends Activity implements OnClickListener {
     // change to callback
     private void actionOrder() {
         Integer order = mService.changeOrder();
-        if (Constants.ORDER_REPEAT_ALL.equals(order)) {
-            mOrderButton.setImageResource(R.drawable.bottom_btn_repeat_all);
-        } else if (Constants.ORDER_REPEAT_ONE.equals(order)) {
-            mOrderButton.setImageResource(R.drawable.bottom_btn_repeat_one);
-        } else if (Constants.ORDER_RANDOM.equals(order)) {
-            mOrderButton.setImageResource(R.drawable.bottom_btn_random);
-        } else {
-            // TODO
-            // Constants.ORDER_NO_REPEAT
-            mOrderButton.setImageResource(R.drawable.bottom_btn_repeat_all);
-        }
+        setOrderButton(order);
     }
 
     // just for test
@@ -283,6 +274,20 @@ public class MainActivity extends Activity implements OnClickListener {
         }
         drawable = getResources().getDrawable(R.drawable.play_pause);
         mPlayButton.setBackground(drawable);
+    }
+
+    private void setOrderButton(Integer order) {
+        if (Constants.ORDER_REPEAT_ALL.equals(order)) {
+            mOrderButton.setImageResource(R.drawable.bottom_btn_repeat_all);
+        } else if (Constants.ORDER_REPEAT_ONE.equals(order)) {
+            mOrderButton.setImageResource(R.drawable.bottom_btn_repeat_one);
+        } else if (Constants.ORDER_RANDOM.equals(order)) {
+            mOrderButton.setImageResource(R.drawable.bottom_btn_random);
+        } else {
+            // TODO
+            // Constants.ORDER_NO_REPEAT
+            mOrderButton.setImageResource(R.drawable.bottom_btn_repeat_all);
+        }
     }
 
     private void setMusicInfo() {

@@ -177,6 +177,10 @@ public class MusicService extends Service {
         return mKMusic.getCurrentPosition();
     }
 
+    public Integer getOrder() {
+        return mOrder;
+    }
+
     public Boolean isPlaying() {
         return mKMusic != null && mKMusic.isReady() && mKMusic.isPlaying();
     }
