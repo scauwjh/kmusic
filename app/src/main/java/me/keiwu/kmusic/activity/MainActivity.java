@@ -2,6 +2,9 @@ package me.keiwu.kmusic.activity;
 
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,7 +22,9 @@ import android.os.IBinder;
 import android.os.Message;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -56,6 +61,14 @@ public class MainActivity extends Activity implements OnClickListener {
     private TextView mProgressTime;
     private TextView mEndTime;
 
+    private CoverFragment mCoverView;
+    private LyricFragment mLyricView;
+    private Integer mCoverDisplayState;
+    private static final Integer DISPLAY_STATE_COVER = 0;
+    private static final Integer DISPLAY_STATE_LYRIC = 1;
+    private static final Integer DISPLAY_STATE_MOD = 2;
+
+
     // private BroadcastReceiver mSeekBarReceiver;
     private MusicService mService;
 
@@ -77,6 +90,30 @@ public class MainActivity extends Activity implements OnClickListener {
     public MainActivity() {
         seekBarSync = false;
         seekBarOnTouching = false;
+        mCoverView = new CoverFragment();
+        mLyricView = new LyricFragment();
+        mCoverDisplayState = DISPLAY_STATE_COVER;
+    }
+
+
+    public class CoverFragment extends Fragment {
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle saveInstanceState) {
+            return inflater.inflate(R.layout.fragment_cover, container, false);
+        }
+
+    }
+
+    public class LyricFragment extends Fragment {
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle saveInstanceState) {
+            return inflater.inflate(R.layout.fragment_lyric, container, false);
+        }
+
     }
 
 
@@ -134,6 +171,12 @@ public class MainActivity extends Activity implements OnClickListener {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.add(R.id.cover_cntr, mCoverView);
+        transaction.add(R.id.cover_cntr, mLyricView);
+        transaction.hide(mLyricView);
+        transaction.commit();
     }
 
     private void initView() {
@@ -204,7 +247,15 @@ public class MainActivity extends Activity implements OnClickListener {
     // TODO:
     // change to callback
     private void actionPlay() {
-        reSetDrawable(mService.playback());
+        Integer retCode = mService.playback();
+        if (Constants.PLAY_RET_PLAY.equals(retCode)) {
+            setPlaybackButton(true);
+        } else if (Constants.PLAY_RET_PAUSE.equals(retCode)) {
+            setPlaybackButton(false);
+        } else if (Constants.PLAY_RET_INIT.equals(retCode)) {
+            setPlaybackButton(true);
+            setMusicInfo();
+        }
     }
 
     // TODO:
@@ -235,6 +286,8 @@ public class MainActivity extends Activity implements OnClickListener {
     // just for test
     private void actionFavourite() {
         Log.i(Constants.LOG_TAG, "favourite action");
+        mCoverDisplayState = (++ mCoverDisplayState) % DISPLAY_STATE_MOD;
+        setCoverContainer();
     }
 
 
@@ -242,8 +295,10 @@ public class MainActivity extends Activity implements OnClickListener {
     // TODO
     // save 10 music history
     private void doOnCompletion() {
+        Log.i(Constants.LOG_TAG, "send handleMessage music info start");
         if (!mService.playNext())
             return;
+        Log.i(Constants.LOG_TAG, "send handleMessage music info");
         Message msg =new Message();
         msg.what = Constants.MAIN_HANDLER_MUSIC_INFO;
         msg.obj = null;
@@ -255,14 +310,7 @@ public class MainActivity extends Activity implements OnClickListener {
     // TODO
     // state bar
     private void reSetDrawable(Integer retCode) {
-        if (Constants.PLAY_RET_PLAY.equals(retCode)) {
-            setPlaybackButton(true);
-        } else if (Constants.PLAY_RET_PAUSE.equals(retCode)) {
-            setPlaybackButton(false);
-        } else if (Constants.PLAY_RET_INIT.equals(retCode)) {
-            setPlaybackButton(true);
-            setMusicInfo();
-        }
+
     }
 
     private void setPlaybackButton(Boolean isPlay) {
@@ -303,10 +351,25 @@ public class MainActivity extends Activity implements OnClickListener {
         mMusicDesc.setText(mService.getDescription());
         mProgressTime.setText("00:00");
         mEndTime.setText(endTime);
+        // cover
+        setCoverContainer();
+    }
+
+    private void setCoverContainer() {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        if (DISPLAY_STATE_COVER.equals(mCoverDisplayState)){
+            transaction.hide(mLyricView);
+            transaction.show(mCoverView);
+        } else {
+            transaction.hide(mCoverView);
+            transaction.show(mLyricView);
+        }
+        transaction.commit();
     }
 
 
-    Handler mHandler = new Handler() {
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -316,6 +379,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 return;
             }
             if (Constants.MAIN_HANDLER_MUSIC_INFO.equals(msg.what)) {
+                Log.i(Constants.LOG_TAG, "handle music info");
                 setMusicInfo();
                 return;
             }
